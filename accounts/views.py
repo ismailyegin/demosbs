@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group, Permission, User
 from django.core.mail import EmailMultiAlternatives
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from zeep import Client
+# from zeep import Client
 
 from accounts.models import Forgot
 from sbs import urls
@@ -142,17 +142,17 @@ def pre_registration(request):
             return render(request, 'registration/cluppre-registration.html',
                           {'preRegistrationform': PreRegistrationform})
 
-        name = request.POST.get('first_name')
-        surname = request.POST.get('last_name')
-        year = request.POST.get('birthDate')
-        year = year.split('/')
-
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request,
-                             'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'registration/cluppre-registration.html',
-                          {'preRegistrationform': PreRegistrationform})
+        # name = request.POST.get('first_name')
+        # surname = request.POST.get('last_name')
+        # year = request.POST.get('birthDate')
+        # year = year.split('/')
+        # 
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request,
+        #                      'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'registration/cluppre-registration.html',
+        #                   {'preRegistrationform': PreRegistrationform})
 
         # -------------------------------------
 
@@ -395,15 +395,15 @@ def newlogin(request, pk):
                 year = request.POST.get('birthDate')
                 year = year.split('/')
 
-                client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-                if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-                    messages.warning(request,
-                                     'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-                    return render(request, 'registration/newlogin.html',
-                                  {'user_form': user_form, 'person_form': person_form,
-                                   'communication_form': communication_form,
-                                   'sportClubUser_form': sportClubUser_form, 'club_form': club_form,
-                                   'communication_formclup': communication_formclup})
+                # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+                # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+                #     messages.warning(request,
+                #                      'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+                #     return render(request, 'registration/newlogin.html',
+                #                   {'user_form': user_form, 'person_form': person_form,
+                #                    'communication_form': communication_form,
+                #                    'sportClubUser_form': sportClubUser_form, 'club_form': club_form,
+                #                    'communication_formclup': communication_formclup})
 
                 clup.name = request.POST.get('name')
                 clup.shortName = request.POST.get('shortName')
@@ -549,10 +549,10 @@ def referenceCoach(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'registration/Coach.html', {'preRegistrationform': coach_form})
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'registration/Coach.html', {'preRegistrationform': coach_form})
 
         if coach_form.is_valid():
 
@@ -609,24 +609,24 @@ def lastlogin(request):
             date = request.POST.get('tarih')
             year = date.split('/')
 
-            client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-            if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-                messages.warning(request,
-                                 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-                return render(request, 'registration/lastlogin.html')
-            else:
-                # if SportClubUser.objects.filter(person__tc=tc):
-                #     print('klup yöneticisi')
-                if Coach.objects.filter(person__tc=tc):
-                    return redirect('accounts:update-coach', tc, Coach.objects.filter(person__tc=tc)[0].pk)
-
-
-                elif Judge.objects.filter(person__tc=tc):
-                    return redirect('accounts:update-judge', tc, Judge.objects.filter(person__tc=tc)[0].pk)
-
-
-                else:
-                    return redirect('accounts:login')
+            # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+            # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+            #     messages.warning(request,
+            #                      'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+            #     return render(request, 'registration/lastlogin.html')
+            # else:
+            #     # if SportClubUser.objects.filter(person__tc=tc):
+            #     #     print('klup yöneticisi')
+            #     if Coach.objects.filter(person__tc=tc):
+            #         return redirect('accounts:update-coach', tc, Coach.objects.filter(person__tc=tc)[0].pk)
+            #
+            #
+            #     elif Judge.objects.filter(person__tc=tc):
+            #         return redirect('accounts:update-judge', tc, Judge.objects.filter(person__tc=tc)[0].pk)
+            #
+            #
+            #     else:
+            #         return redirect('accounts:login')
         else:
             messages.warning(request, 'Sistem de kaydınız bulunmamaktadır.')
 
@@ -697,17 +697,17 @@ def updatecoach(request, tc, pk):
             year = request.POST.get('birthDate')
             year = year.split('/')
 
-            client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-            if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-                messages.warning(request,
-                                 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-                return render(request, 'registration/CoachUpdate.html',
-                              {'user_form': user_form, 'communication_form': communication_form,
-                               'person_form': person_form, 'grades_form': grade_form, 'coach': coach.pk,
-                               'personCoach': person, 'visa_form': visa_form, 'iban_form': iban_form,
-                               'groups': groups,
-                               'metarial_form': metarial_form,
-                               })
+            # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+            # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+            #     messages.warning(request,
+            #                      'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+            #     return render(request, 'registration/CoachUpdate.html',
+            #                   {'user_form': user_form, 'communication_form': communication_form,
+            #                    'person_form': person_form, 'grades_form': grade_form, 'coach': coach.pk,
+            #                    'personCoach': person, 'visa_form': visa_form, 'iban_form': iban_form,
+            #                    'groups': groups,
+            #                    'metarial_form': metarial_form,
+            #                    })
             if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid() and metarial_form.is_valid():
                 user.username = user_form.cleaned_data['email']
                 user.first_name = user_form.cleaned_data['first_name']
@@ -832,16 +832,16 @@ def updatejudge(request, tc, pk):
                                'metarial_form': metarial_form,
                                })
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request,
-                             'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'registration/JudgeUpdate.html',
-                          {'user_form': user_form, 'communication_form': communication_form,
-                           'person_form': person_form, 'judge': judge, 'grade_form': grade_form,
-                           'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
-                           'metarial_form': metarial_form,
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request,
+        #                      'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'registration/JudgeUpdate.html',
+        #                   {'user_form': user_form, 'communication_form': communication_form,
+        #                    'person_form': person_form, 'judge': judge, 'grade_form': grade_form,
+        #                    'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
+        #                    'metarial_form': metarial_form,
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid() and metarial_form.is_valid():
 

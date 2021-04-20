@@ -43,7 +43,7 @@ from django.utils import timezone
 
 from accounts.models import Forgot
 
-from zeep import Client
+# from zeep import Client
 from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceReferee import ReferenceReferee
 from sbs.models.ReferenceCoach import ReferenceCoach
@@ -283,12 +283,12 @@ def return_add_coach(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'antrenor/antrenor-ekle.html',
-                          {'user_form': user_form, 'person_form': person_form,
-                           'communication_form': communication_form, 'iban_form': iban_form, 'grade_form': grade_form})
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'antrenor/antrenor-ekle.html',
+        #                   {'user_form': user_form, 'person_form': person_form,
+        #                    'communication_form': communication_form, 'iban_form': iban_form, 'grade_form': grade_form})
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid() and grade_form.is_valid():
             user = User()
@@ -798,11 +798,11 @@ def coachreferenceUpdate(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'antrenor/AntronerBasvuruUpdate.html',
-                          {'preRegistrationform': coach_form})
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'antrenor/AntronerBasvuruUpdate.html',
+        #                   {'preRegistrationform': coach_form})
 
         if coach_form.is_valid():
             coach_form.save()
@@ -903,15 +903,15 @@ def coachUpdate(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'antrenor/antrenorDuzenle.html',
-                          {'user_form': user_form, 'communication_form': communication_form,
-                           'person_form': person_form, 'grades_form': grade_form, 'coach': coach,
-                           'personCoach': person, 'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
-                           'metarial_form': metarial_form, 'competitions': competitions, 'logs': logs
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'antrenor/antrenorDuzenle.html',
+        #                   {'user_form': user_form, 'communication_form': communication_form,
+        #                    'person_form': person_form, 'grades_form': grade_form, 'coach': coach,
+        #                    'personCoach': person, 'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
+        #                    'metarial_form': metarial_form, 'competitions': competitions, 'logs': logs
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid() and metarial_form.is_valid():
 

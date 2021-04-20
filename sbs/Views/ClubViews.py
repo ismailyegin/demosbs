@@ -35,7 +35,7 @@ from datetime import date, datetime
 import datetime
 from django.utils import timezone
 
-from zeep import Client
+# from zeep import Client
 # from sbs.models.Person import Person
 # from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceReferee import ReferenceReferee
@@ -192,13 +192,13 @@ def return_add_club_person(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'kulup/kulup-uyesi-ekle.html',
-                          {'user_form': user_form, 'person_form': person_form, 'communication_form': communication_form,
-                           'sportClubUser_form': sportClubUser_form,
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'kulup/kulup-uyesi-ekle.html',
+        #                   {'user_form': user_form, 'person_form': person_form, 'communication_form': communication_form,
+        #                    'sportClubUser_form': sportClubUser_form,
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and sportClubUser_form.is_valid():
             user = User()
@@ -325,15 +325,15 @@ def updateClubPersons(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'kulup/kulup-uyesi-duzenle.html',
-                          {'user_form': user_form, 'communication_form': communication_form, 'groups': groups,
-                           'clupUser': athlete,
-                           'person_form': person_form, 'sportClubUser_form': sportClubUser_form, 'clubs': clubs,
-                           'metarial_form': metarial_form,
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'kulup/kulup-uyesi-duzenle.html',
+        #                   {'user_form': user_form, 'communication_form': communication_form, 'groups': groups,
+        #                    'clupUser': athlete,
+        #                    'person_form': person_form, 'sportClubUser_form': sportClubUser_form, 'clubs': clubs,
+        #                    'metarial_form': metarial_form,
+        #                    })
 
         if user_form.is_valid() and communication_form.is_valid() and person_form.is_valid() and sportClubUser_form.is_valid():
 

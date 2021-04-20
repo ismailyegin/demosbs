@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from zeep import Client
+# from zeep import Client
 
 from accounts.models import Forgot
 from sbs.Forms.CategoryItemForm import CategoryItemForm
@@ -102,12 +102,12 @@ def return_add_referee(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'hakem/hakem-ekle.html',
-                          {'user_form': user_form, 'person_form': person_form,
-                           'communication_form': communication_form, 'iban_form': iban_form})
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'hakem/hakem-ekle.html',
+        #                   {'user_form': user_form, 'person_form': person_form,
+        #                    'communication_form': communication_form, 'iban_form': iban_form})
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid():
             user = User()
@@ -470,11 +470,11 @@ def referenceUpdateReferee(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'hakem/HakemBasvuruUpdate.html',
-                          {'preRegistrationform': refere_form})
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'hakem/HakemBasvuruUpdate.html',
+        #                   {'preRegistrationform': refere_form})
 
         if refere_form.is_valid():
             refere_form.save()
@@ -564,15 +564,15 @@ def updateReferee(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'hakem/hakemDuzenle.html',
-                          {'user_form': user_form, 'communication_form': communication_form,
-                           'person_form': person_form, 'judge': judge, 'grade_form': grade_form,
-                           'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
-                           'metarial_form': metarial_form, 'competitions': competitions, 'logs': logs
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'hakem/hakemDuzenle.html',
+        #                   {'user_form': user_form, 'communication_form': communication_form,
+        #                    'person_form': person_form, 'judge': judge, 'grade_form': grade_form,
+        #                    'visa_form': visa_form, 'iban_form': iban_form, 'groups': groups,
+        #                    'metarial_form': metarial_form, 'competitions': competitions, 'logs': logs
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and communication_form.is_valid() and iban_form.is_valid() and metarial_form.is_valid():
 

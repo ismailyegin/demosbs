@@ -41,8 +41,6 @@ from accounts.models import Forgot
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # from sbs.models.simplecategory import simlecategory
 
-
-from zeep import Client
 from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceReferee import ReferenceReferee
 from sbs.models.ReferenceCoach import ReferenceCoach

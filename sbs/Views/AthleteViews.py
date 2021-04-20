@@ -50,7 +50,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # from sbs.models.simplecategory import simlecategory
 
 
-from zeep import Client
+# from zeep import Client
 from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceReferee import ReferenceReferee
 from sbs.models.ReferenceCoach import ReferenceCoach
@@ -149,14 +149,14 @@ def return_add_athlete_antrenor(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'sporcu/sporcu-ekle.html',
-                          {'user_form': user_form, 'person_form': person_form, 'license_form': license_form,
-                           'communication_form': communication_form
-
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'sporcu/sporcu-ekle.html',
+        #                   {'user_form': user_form, 'person_form': person_form, 'license_form': license_form,
+        #                    'communication_form': communication_form
+        #
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and license_form.is_valid() and communication_form.is_valid():
             user = user_form.save(commit=False)
@@ -380,14 +380,14 @@ def return_add_athlete(request):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'sporcu/sporcu-ekle.html',
-                          {'user_form': user_form, 'person_form': person_form, 'license_form': license_form,
-                           'communication_form': communication_form
-
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'sporcu/sporcu-ekle.html',
+        #                   {'user_form': user_form, 'person_form': person_form, 'license_form': license_form,
+        #                    'communication_form': communication_form
+        #
+        #                    })
 
         if user_form.is_valid() and person_form.is_valid() and license_form.is_valid() and communication_form.is_valid():
             user = user_form.save(commit=False)
@@ -672,15 +672,15 @@ def updateathletes(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'sporcu/sporcuDuzenle.html',
-                          {'user_form': user_form, 'communication_form': communication_form,
-                           'person_form': person_form, 'licenses_form': licenses_form,
-                           'athlete': athlete, 'say': say, 'competition': competition, 'groups': group,
-                           'metarial_form': metarial_form, 'competitions': competitions
-                           })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim  soyisim dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'sporcu/sporcuDuzenle.html',
+        #                   {'user_form': user_form, 'communication_form': communication_form,
+        #                    'person_form': person_form, 'licenses_form': licenses_form,
+        #                    'athlete': athlete, 'say': say, 'competition': competition, 'groups': group,
+        #                    'metarial_form': metarial_form, 'competitions': competitions
+        #                    })
 
         if user_form.is_valid() and communication_form.is_valid() and person_form.is_valid() and metarial_form.is_valid():
             # user = user_form.save(commit=False)

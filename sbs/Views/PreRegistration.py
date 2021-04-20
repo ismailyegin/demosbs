@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
-from zeep import Client
+# from zeep import Client
 
 from accounts.models import Forgot
 from sbs.Forms.PreRegidtrationForm import PreRegistrationForm
@@ -65,12 +65,12 @@ def update_preRegistration(request, pk):
         year = request.POST.get('birthDate')
         year = year.split('/')
 
-        client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
-
-        if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
-            messages.warning(request, 'Tc kimlik numarasi ile isim,soyisim,dogum yılı  bilgileri uyuşmamaktadır. ')
-            return render(request, 'kulup/kulup-basvuru-duzenle.html',
-                          {'preRegistrationform': form, })
+        # client = Client('https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL')
+        #
+        # if not (client.service.TCKimlikNoDogrula(tc, name, surname, year[2])):
+        #     messages.warning(request, 'Tc kimlik numarasi ile isim,soyisim,dogum yılı  bilgileri uyuşmamaktadır. ')
+        #     return render(request, 'kulup/kulup-basvuru-duzenle.html',
+        #                   {'preRegistrationform': form, })
         form = PreRegistrationForm(request.POST, request.FILES or None, instance=veri)
 
         if form.is_valid():
