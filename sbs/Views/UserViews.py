@@ -8,13 +8,6 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-from sbs.Forms.CommunicationForm import CommunicationForm
-from sbs.Forms.DisabledCommunicationForm import DisabledCommunicationForm
-from sbs.Forms.DisabledPersonForm import DisabledPersonForm
-from sbs.Forms.DisabledSportClubUserForm import DisabledSportClubUserForm
-from sbs.Forms.DisabledUserForm import DisabledUserForm
-from sbs.Forms.PersonForm import PersonForm
-from sbs.Forms.SportClubUserForm import SportClubUserForm
 from sbs.Forms.UserForm import UserForm
 from sbs.Forms.UserSearchForm import UserSearchForm
 from accounts.models import Forgot

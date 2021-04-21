@@ -187,6 +187,12 @@ def groups(request):
     return render(request, 'permission/groups.html', {'groups': group})
 
 
+def adminlte(request):
+
+    return render(request, 'accounts/adminlte.html')
+
+
+
 @login_required
 def permission(request, pk):
     general_methods.show_urls(urls.urlpatterns, 0)

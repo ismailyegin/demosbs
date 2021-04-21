@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'lastlogin/$', views.lastlogin, name='last-login'),
     url(r'updateCoach/(?P<tc>\d+)/(?P<pk>\d+)$', views.updatecoach, name='update-coach'),
     url(r'updateJudge/(?P<tc>\d+)/(?P<pk>\d+)$', views.updatejudge, name='update-judge'),
+    url(r'adminlte/$', views.adminlte, name='adminlte'),
 ]

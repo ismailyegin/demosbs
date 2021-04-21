@@ -70,12 +70,12 @@
 
                 <div class="col-lg-12 ">
                     <div class="col-lg-6">
-                        <div class="box box-solid box-info">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Genel Bilgiler</h3>
+                        <div class="card card-solid card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Genel Bilgiler</h3>
 
                             </div>
-                            <div class="box-body">
+                            <div class="card-body">
                                 <div class="row ">
                                     <div class="col-lg-12">
 
@@ -165,23 +165,21 @@
                         </div>
                     </div>
                     <div class="col-lg-6 ">
-                        <div class="box box-solid box-success">
-                            <div class="box-header with-border">
+                        <div class="card card-solid card-success">
+                            <div class="card-header with-border">
 
-                                <h3 class="box-title">Lisans Bilgileri</h3>
+                                <h3 class="card-title">Lisans Bilgileri</h3>
 
                             </div>
 
 
-                            <div class="box-body">
+                            <div class="card-body">
                                 <div class="row">
 
 
                                     <div class="col-lg-12 text-center">
                                         <div class="form-group">
 
-
-                                            <center>
                                                 <label> {{ license_form.lisansPhoto.label }}</label>
                                                 {% load static %}
                                                 <img src="{% static 'images/photo.png' %}" id="preview2"
@@ -193,7 +191,7 @@
                                                            onchange="previewImage2()">
 
                                                 </p>
-                                            </center>
+
 
 
                                         </div>
@@ -254,17 +252,17 @@
                     </div>
                     {#            ///--->>>zorunlu olmayan Bilgiler#}
                     {#            <div class="col-lg-12">#}
-                    {#                <div class="box box-primary">#}
-                    {#                    <div class="box-header with-border">#}
-                    {#                        <h3 class="box-title">Diğer Bilgiler</h3>#}
-                    {#                        <div class="box-tools pull-right">#}
-                    {#                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i#}
+                    {#                <div class="card card-primary">#}
+                    {#                    <div class="card-header with-border">#}
+                    {#                        <h3 class="card-title">Diğer Bilgiler</h3>#}
+                    {#                        <div class="card-tools pull-right">#}
+                    {#                            <button type="button" class="btn btn-card-tool" data-widget="collapse"><i#}
                     {#                                    class="fa fa-minus"></i></button>#}
-                    {#                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i#}
+                    {#                            <button type="button" class="btn btn-card-tool" data-widget="remove"><i#}
                     {#                                    class="fa fa-remove"></i></button>#}
                     {#                        </div>#}
                     {#                    </div>#}
-                    {#                    <div class="box-body">#}
+                    {#                    <div class="card-body">#}
                     {#                        <div class="row">#}
                     {#                            <div class="col-lg-2">#}
                     {#                                <label> {{ person_form.bloodType.label }}</label>#}
@@ -309,7 +307,7 @@
                     {##}
                     {##}
                     {#                        </div>#}
-                    {#                        <div class="box-footer btn-group pull-right">#}
+                    {#                        <div class="card-footer btn-group pull-right">#}
                     {#                            <button class="btn btn-primary" type="submit">Kaydet</button>#}
                     {#                        </div>#}
                     {##}
