@@ -130,13 +130,13 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12 ">
-                <div class="box-body">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Antrenör Filtrele</h3>
+                <div class="card-body">
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Antrenör Filtrele</h3>
                         </div>
                         <form method="post" role="form">
-                            <div class="box-body">
+                            <div class="card-body">
                                 {% csrf_token %}
 
                                 <div class="col-md-3">
@@ -160,9 +160,9 @@
 
 
                             </div>
-                            <!-- /.box-body -->
+                            <!-- /.card-body -->
 
-                            <div class="box-footer">
+                            <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ara</button>
                             </div>
                         </form>
@@ -170,7 +170,7 @@
 
                     </div>
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
             </div>
         </div>
 
@@ -180,24 +180,24 @@
             <section class="col-lg-12 ">
 
 
-                <div class="box-body">
+                <div class="card-body">
 
                     <form method="post" enctype="multipart/form-data" role="form">
                     {% csrf_token %}
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Kulüp Üyeleri</h3>
+                        <div class="card card-primary">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Kulüp Üyeleri</h3>
                             </div>
 
-                            <div class="box-header with-border">
+                            <div class="card-header with-border">
                                 <div class="btn-group">
-                                    <div class="box-footer">
+                                    <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Kulüp Üyesi Seç</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="box-body  berktug">
+                            <div class="card-body  berktug">
                                 <table id="antrenorler" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -215,7 +215,7 @@
                                     {% if coaches.all %}
                                         {% for coach in coaches %}
                                             <tr>
-                                                <td><input type="checkbox" name="selected_options"
+                                                <td><input type="checkcard" name="selected_options"
                                                            value="{{ coach.pk }}"></td>
                                                 <td>{{ coach.user.first_name }} {{ coach.user.last_name }} </td>
                                                 <td>{{ coach.person.tc }} </td>
@@ -235,7 +235,7 @@
 
                         </div>
                     </form>
-                    <!-- /.box -->
+                    <!-- /.card -->
 
 
                 </div>
@@ -250,11 +250,11 @@
 
     <script>
         $(function () {
-            //Enable iCheck plugin for checkboxes
-            //iCheck for checkbox and radio inputs
-            $('.berktug input[type="checkbox"]').iCheck({
+            //Enable iCheck plugin for checkcardes
+            //iCheck for checkcard and radio inputs
+            $('.berktug input[type="checkcard"]').iCheck({
 
-                checkboxClass: 'icheckbox_flat-blue',
+                checkcardClass: 'icheckcard_flat-blue',
 
             });
 

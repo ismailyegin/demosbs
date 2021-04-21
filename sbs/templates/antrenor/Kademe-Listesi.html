@@ -131,13 +131,13 @@
 
         <div class="row">
             <div class="col-lg-12 ">
-                <div class="box-body">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Antrenör Kademe Filtrele</h3>
+                <div class="card-body">
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Antrenör Kademe Filtrele</h3>
                         </div>
                         <form method="post" role="form">
-                            <div class="box-body">
+                            <div class="card-body">
                                 {% csrf_token %}
 
                                 <div class="col-md-2">
@@ -190,9 +190,9 @@
 
 
                             </div>
-                            <!-- /.box-body -->
+                            <!-- /.card-body -->
 
-                            <div class="box-footer">
+                            <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ara</button>
                             </div>
                         </form>
@@ -200,16 +200,16 @@
 
                     </div>
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-lg-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Antrenör Kademe Listesi</h3>
+                <div class="card card-primary">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Antrenör Kademe Listesi</h3>
                     </div>
                     {% if aktif == 'Admin' or aktif == 'Yonetim' %}
                         <a onclick="onay()" type="button" class="btn btn-success">
@@ -222,7 +222,7 @@
                         </a>
 
                     {% endif %}
-                    <div class="box-body">
+                    <div class="card-body">
 
                         <table id="belt" class="table table-bordered table-hover">
                             <thead>

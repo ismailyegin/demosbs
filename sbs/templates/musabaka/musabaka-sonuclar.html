@@ -148,12 +148,12 @@
 
         <div class="row">
         <div class="col-lg-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ competition.name  }} Sonuçları</h3>
+            <div class="card card-primary">
+                <div class="card-header with-border">
+                    <h3 class="card-title">{{ competition.name  }} Sonuçları</h3>
                 </div>
 
-                <div class="box-body">
+                <div class="card-body">
                     <table id="sonucTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -329,11 +329,11 @@
 
     <script>
         $(function () {
-            //Enable iCheck plugin for checkboxes
-            //iCheck for checkbox and radio inputs
-            $('.berktug input[type="checkbox"]').iCheck({
+            //Enable iCheck plugin for checkcardes
+            //iCheck for checkcard and radio inputs
+            $('.berktug input[type="checkcard"]').iCheck({
 
-                checkboxClass: 'icheckbox_flat-blue',
+                checkcardClass: 'icheckcard_flat-blue',
 
             });
 

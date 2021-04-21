@@ -196,13 +196,13 @@
 
          <div class="row">
             <div class="col-lg-12 ">
-                <div class="box-body">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Birim Filtrele</h3>
+                <div class="card-body">
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Birim Filtrele</h3>
                         </div>
                         <form method="post" role="form">
-                            <div class="box-body">
+                            <div class="card-body">
                                 {% csrf_token %}
 
                                 <div class="col-md-9">
@@ -213,9 +213,9 @@
                                 </div>
 
                             </div>
-                            <!-- /.box-body -->
+                            <!-- /.card-body -->
 
-                            <div class="box-footer">
+                            <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ara</button>
                             </div>
                         </form>
@@ -223,7 +223,7 @@
 
                     </div>
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
             </div>
         </div>
 
@@ -231,12 +231,12 @@
 
         <div class="row">
             <section class="col-lg-12 ">
-                <div class="box-body">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Birimler</h3>
+                <div class="card-body">
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Birimler</h3>
                         </div>
-                    <div class="box-header with-border">
+                    <div class="card-header with-border">
                             <div class="btn-group">
 {#                                {% if user.groups.all.0.name == 'Yonetim' or user.groups.all.0.name == 'Admin' %}#}
                                     <a href="{% url "sbs:arsiv-birimEkle" %}"
@@ -247,7 +247,7 @@
                             </div>
 
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="kullanicilar" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -299,7 +299,7 @@
 
                         </div>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.card -->
 
 
                 </div>

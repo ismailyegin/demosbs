@@ -107,13 +107,13 @@
     <section class="content">
 
         {% if competition.forWhichClazz == 'REFEREE' %}
-            <div class="box box-primary">
+            <div class="card card-primary">
 
-                <div class="box-header with-border">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Onay Durumu</h3>
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ competition.status }}</h3>
+                <div class="card-header with-border">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Onay Durumu</h3>
+                        <div class="card-header with-border">
+                            <h3 class="card-title">{{ competition.status }}</h3>
 
 
                             <div class="text-right">
@@ -138,11 +138,11 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Genel Bilgiler</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Genel Bilgiler</h3>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -208,7 +208,7 @@
 
                             </div>
 
-                            <div class="box-footer">
+                            <div class="card-footer">
                                 {% if aktif == 'Admin' %}
 
                                     <button class="btn btn-primary" type="submit">Güncelle</button>
@@ -227,11 +227,11 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"> Seçili Hakemler</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title"> Seçili Hakemler</h3>
                         </div>
-                        <div class="box-header with-border">
+                        <div class="card-header with-border">
                             <div class="btn-group">
 
                                 <a href="{% url "sbs:vize-semineri-hakem-sec" competition.pk %}"
@@ -241,7 +241,7 @@
 
                             </div>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="sporcular" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -297,12 +297,12 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"> Basvuru Yapan Hakemler</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title"> Basvuru Yapan Hakemler</h3>
                         </div>
 
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="sporcular" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>

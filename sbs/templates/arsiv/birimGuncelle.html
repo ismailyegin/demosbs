@@ -126,9 +126,9 @@
 
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="box box-primary">
+                    <div class="card card-primary">
 
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="col-lg-12">
 
 
@@ -139,7 +139,7 @@
 
 
 
-                                <div class="box-footer">
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Kaydet</button>
                                 </div>
                             </div>
@@ -147,11 +147,11 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Parametreler</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Parametreler</h3>
                         </div>
-                                        <div class="box-header with-border">
+                                        <div class="card-header with-border">
                             <div class="btn-group">
 {#                                {% if user.groups.all.0.name == 'Yonetim' or user.groups.all.0.name == 'Admin' %}#}
                                     <a href="{% url "sbs:Birim-parametreAdd" birim.pk %}"
@@ -162,7 +162,7 @@
                             </div>
 
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="kategori" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -223,12 +223,12 @@
 
          <div class="row">
             <section class="col-lg-12 ">
-                <div class="box-body">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Klasörler</h3>
+                <div class="card-body">
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Klasörler</h3>
                         </div>
-                    <div class="box-header with-border">
+                    <div class="card-header with-border">
                             <div class="btn-group">
 {#                                {% if user.groups.all.0.name == 'Yonetim' or user.groups.all.0.name == 'Admin' %}#}
                                 <a href="{% url "sbs:klasor-ekle" %}?birim={{ birim.pk }}"
@@ -239,7 +239,7 @@
                             </div>
 
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="kullanicilar" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -293,7 +293,7 @@
 
                         </div>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.card -->
 
 
                 </div>

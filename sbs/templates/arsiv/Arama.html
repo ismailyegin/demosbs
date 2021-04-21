@@ -213,7 +213,7 @@
                             <form method="post" role="form">
 
                                 {% csrf_token %}
-                                <div class="box-body">
+                                <div class="card-body">
                                     <div class="col-lg-12">
                                         <div class="form-group ">
                                             <label> Genel Arama </label>
@@ -224,7 +224,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="box-footer">
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Ara</button>
                                 </div>
                             </form>
@@ -263,7 +263,7 @@
                                                 </select></div>
 
 
-                                            <div class="box-footer">
+                                            <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">Ara</button>
                                             </div>
                                         </form>
@@ -315,14 +315,14 @@
                                                 </select></td>
                                             </tr>
 
-                                            <div class="box-footer">
+                                            <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">Ara</button>
                                             </div>
                                         </form>
                                     </div>
                                     <!-- /.tab-pane -->
                                     {#                                        <div class="tab-pane" id="dosya">#}
-                                    {#                                            <div class="box-body">#}
+                                    {#                                            <div class="card-body">#}
                                     {##}
                                     {##}
                                     {#                                                <div class="col-lg-12">#}
@@ -339,7 +339,7 @@
                                     {##}
                                     {##}
                                     {#                                            </div>#}
-                                    {#                                            <div class="box-footer">#}
+                                    {#                                            <div class="card-footer">#}
                                     {#                                                <button type="submit" class="btn btn-primary">Ara</button>#}
                                     {#                                            </div>#}
                                     {#                                        </div>#}
@@ -361,7 +361,7 @@
             </div>
 
 
-            <!-- /.box-body -->
+            <!-- /.card-body -->
 
 
             </form>
@@ -369,12 +369,12 @@
         {% if units %}
             <div class="row">
                 <div class="col-lg-12 ">
-                    <div class="box-body">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Arama Sonucu</h3>
+                    <div class="card-body">
+                        <div class="card card-primary">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Arama Sonucu</h3>
                             </div>
-                            <div class="box-body">
+                            <div class="card-body">
                                 <ul class="control-sidebar-menu " data-widget="tree">
                                     {% for item in units %}
 
@@ -395,7 +395,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
 
                     </div>

@@ -13,7 +13,7 @@ class SearchClupForm(ModelForm):
                                         label="Kulübü",
                                         required=False,
                                         widget=forms.Select(
-                                            attrs={'class': 'form-control select2 select2-hidden-accessible',
+                                            attrs={'class': 'form-control select2',
                                                    'style': 'width: 100%; '}))
     coach = forms.ModelChoiceField(queryset=Coach.objects.all(),
                                    # to_field_name='name',
@@ -21,7 +21,7 @@ class SearchClupForm(ModelForm):
                                    label="Antrenör",
                                    required=False,
                                    widget=forms.Select(
-                                       attrs={'class': 'form-control select2 select2-hidden-accessible',
+                                       attrs={'class': 'form-control select2 ',
                                               'style': 'width: 100%; '}))
 
     class Meta:

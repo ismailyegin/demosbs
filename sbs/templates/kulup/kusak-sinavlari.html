@@ -137,15 +137,15 @@
             <section class="col-lg-12 ">
 
 
-                <div class="box-body">
+                <div class="card-body">
 
 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Kuşak Sınavları</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Kuşak Sınavları</h3>
                         </div>
                         {% if aktif == 'Admin' %}
-                            <div class="box-header with-border">
+                            <div class="card-header with-border">
                                 <div class="btn-group">
                                     <a href="{% url "sbs:kusak-sinavi-ekle" %}"
                                        type="button" class="btn btn-success"><i
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                         {% endif %}
-                        <div class="box-body">
+                        <div class="card-body">
                             <table id="kulupler" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -206,7 +206,7 @@
 
                         </div>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.card -->
 
 
                 </div>

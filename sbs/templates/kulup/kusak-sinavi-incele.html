@@ -94,32 +94,32 @@
     {% endif %}
 
     <section class="content">
-        <div class="box-body">
-            <div class="box box-primary">
+        <div class="card-body">
+            <div class="card card-primary">
 
-                <div class="box-header with-border">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Onay Durumu</h3>
+                <div class="card-header with-border">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Onay Durumu</h3>
                     </div>
 
 
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{ exam.status }}</h3>
+                    <div class="card-header with-border">
+                        <h3 class="card-title">{{ exam.status }}</h3>
                     </div>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="card card-primary">
                 <form method="post" enctype="multipart/form-data" role="form">
                     {% csrf_token %}
                     <div class="row">
 
                         <div class="col-lg-12">
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Sınav Bilgileri</h3>
+                            <div class="card card-primary">
+                                <div class="card-header with-border">
+                                    <h3 class="card-title">Sınav Bilgileri</h3>
                                 </div>
 
-                                <div class="box-body">
+                                <div class="card-body">
                                     <table id="sporcular" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
@@ -184,14 +184,14 @@
                     </div>
                 </form>
             </div>
-            <div class="box box-primary">
+            <div class="card card-primary">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Seçili Sporcular</h3>
+                        <div class="card card-primary">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Seçili Sporcular</h3>
                             </div>
-                            <div class="box-header with-border">
+                            <div class="card-header with-border">
                                 <div class="btn-group">
                                     <a href="{% url "sbs:kusak-sinavi-sporcu-sec" exam.pk %}"
                                        type="button" class="btn btn-success"><i
@@ -199,7 +199,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="box-body">
+                            <div class="card-body">
                                 <table id="sporcular" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -243,14 +243,14 @@
 
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="card card-primary">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Seçili Antronerler</h3>
+                        <div class="card card-primary">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Seçili Antronerler</h3>
                             </div>
-                            <div class="box-header with-border">
+                            <div class="card-header with-border">
                                 <div class="btn-group">
                                     <a href="{% url "sbs:kusak-sinavi-antroner-sec" exam.pk %}"
                                        type="button" class="btn btn-success"><i
@@ -258,7 +258,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="box-body">
+                            <div class="card-body">
                                 <table id="sporcular" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>

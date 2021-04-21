@@ -135,14 +135,14 @@
             <section class="col-lg-12 ">
 
 
-                <div class="box-body">
+                <div class="card-body">
 
 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Antroner Seç</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Antroner Seç</h3>
                         </div>
-                        <div class="box-body berktug">
+                        <div class="card-body berktug">
                             <form method="post" enctype="multipart/form-data" role="form">
                                 {% csrf_token %}
                                 <table id="sporcular" class="table table-bordered table-hover">
@@ -161,7 +161,7 @@
                                         {% for athlete in athletes %}
                                             <tr>
 
-                                                <td><input type="checkbox" name="selected_options"
+                                                <td><input type="checkcard" name="selected_options"
                                                            value="{{ athlete.pk }}"></td>
                                                 <td>{{ athlete.user.first_name }} {{ athlete.user.last_name }} </td>
                                                 <td>{{ athlete.belts.last.definition.name }}</td>
@@ -176,15 +176,15 @@
                                     </tbody>
                                 </table>
 
-                                <div class="box-header with-border">
-                                    <div class="box-footer">
+                                <div class="card-header with-border">
+                                    <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Devam Et</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.card -->
 
 
                 </div>
@@ -213,11 +213,11 @@
 
     <script>
         $(function () {
-            //Enable iCheck plugin for checkboxes
-            //iCheck for checkbox and radio inputs
-            $('.berktug input[type="checkbox"]').iCheck({
+            //Enable iCheck plugin for checkcardes
+            //iCheck for checkcard and radio inputs
+            $('.berktug input[type="checkcard"]').iCheck({
 
-                checkboxClass: 'icheckbox_flat-blue',
+                checkcardClass: 'icheckcard_flat-blue',
 
             });
 

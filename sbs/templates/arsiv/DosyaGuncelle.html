@@ -122,11 +122,11 @@
             <div class="row">
 
                 <div class="col-lg-12">
-            <div class="box box-primary">
-{#                <div class="box-header with-border">#}
-{#                    <h3 class="box-title"> Dosya Evrak Ekle </h3>#}
+            <div class="card card-primary">
+{#                <div class="card-header with-border">#}
+{#                    <h3 class="card-title"> Dosya Evrak Ekle </h3>#}
 {#                </div>#}
-                <div class="box-body">
+                <div class="card-body">
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Birim</label>
@@ -183,11 +183,11 @@
     </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"> Evrak Ekle </h3>
+                    <div class="card card-primary">
+                                        <div class="card-header with-border">
+                                            <h3 class="card-title"> Evrak Ekle </h3>
                                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
 
                             <div id="dropzone">
                                 <form action="{% url 'sbs:dosya-guncelle' dosya.pk %}"
@@ -223,14 +223,14 @@
 
                 <div class="row">
                 <div class="col-lg-3">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"> Parametreler </h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title"> Parametreler </h3>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="col-lg-12">
                                 {{ form }}
-                                <div class="box-footer">
+                                <div class="card-footer">
                                     <button type="submit" class="btn btn-primary ">Güncelle</button>
                                 </div>
                             </div>
@@ -238,13 +238,13 @@
                     </div>
                 </div>
                 <div class="col-lg-9 ">
-                    <div class="box-body">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Evraklar</h3>
+                    <div class="card-body">
+                        <div class="card card-primary">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Evraklar</h3>
                             </div>
 
-                            <div class="box-header with-border">
+                            <div class="card-header with-border">
 
                                     <div class="btn-group">
 
@@ -271,7 +271,7 @@
                             </div>
 
 
-                            <div class="box-body">
+                            <div class="card-body">
 
                                 {% if evraklist %}
                                 <div class="embed-responsive embed-responsive-4by3">
@@ -279,12 +279,12 @@
                                             allowfullscreen></iframe>
                                 </div>
                                 {% endif %}
-                                <!-- /.box -->
+                                <!-- /.card -->
                             </div>
 
 
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
 
                     </div>
