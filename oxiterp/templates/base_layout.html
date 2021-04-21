@@ -27,8 +27,8 @@
 
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+
+
     <!-- summernote -->
     <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css' %}">
 
@@ -39,12 +39,22 @@
     <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
 
 
-    {#    inpu mask#}
+    {#    datepicker#}
 
-    <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.css' %}">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+
+
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="{% static 'plugins/timepicker/bootstrap-timepicker.min.css' %}">
+
+
+    {#    inpu mask#}
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
           href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
@@ -199,7 +209,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">SPOR BİLGİ SİSTEMİ</span>
@@ -432,11 +442,15 @@
 <script src="{% static 'plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %}"></script>
 <!-- InputMask -->
 <script src="{% static 'plugins/moment/moment.min.js' %}"></script>
-<script src="{% static 'plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+{#pickermask#}
+<script src="{% static 'plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'plugins/timepicker/bootstrap-timepicker.min.js' %}"></script>
+
 <!-- date-range-picker -->
 <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
-<!-- bootstrap color picker -->
-<script src="{% static 'plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 <!-- Bootstrap Switch -->
@@ -477,14 +491,14 @@
         $('.select2').select2();
 
 
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
-
-        $('.datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-        //Money Euro
-        $('[data-mask]').inputmask();
+        {#//Datemask dd/mm/yyyy#}
+        {#$('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});#}
+        {#//Datemask2 mm/dd/yyyy#}
+        {#$('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});#}
+        {##}
+        {#$('.datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});#}
+        {#//Money Euro#}
+        {#$('[data-mask]').inputmask();#}
 
         //Date range picker
         $('#reservation').daterangepicker();
@@ -514,6 +528,7 @@
             autoclose: true,
             language: 'tr',
             format: 'dd/mm/yyyy',
+
         });
 
         //Date picker
@@ -559,11 +574,6 @@
 
         })
 
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
 
 
         $('.preloader').fadeOut('slow');

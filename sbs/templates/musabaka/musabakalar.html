@@ -328,15 +328,18 @@
             <div class="card-body">
 
 
-                <div class="card card-primary">
+                <div class="card ">
                     <div class="card-header with-border">
                         <h3 class="card-title">Müsabaka Filtrele</h3>
                     </div>
                     <form method="post" role="form">
 
+
+
                         <div class="card-body">
                             {% csrf_token %}
-                            <div class="col-md-3">
+                             <div class="row">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label> {{ query.name.label }}</label>
                                     {{ query.name }}
@@ -344,12 +347,13 @@
                             </div>
 
 
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label> {{ query.startDate.label }}</label>
                                     {{ query.startDate }}
                                 </div>
                             </div>
+                                 </div>
 
 
                         </div>
@@ -377,7 +381,7 @@
             <div class="card-body">
 
 
-                <div class="card card-primary">
+                <div class="card ">
                     <div class="card-header with-border">
                         <h3 class="card-title">Müsabakalar</h3>
                     </div>

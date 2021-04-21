@@ -139,6 +139,7 @@
                         <form method="post" role="form">
                             <div class="card-body">
                                 {% csrf_token %}
+                                <div class="row">
 
                                 <div class="col-md-2">
                                     <div class="form-group">
@@ -184,7 +185,7 @@
 
                                         </select>
 
-
+</div>
                                     </div>
                                 </div>
 
@@ -212,6 +213,9 @@
                         <h3 class="card-title">Antrenör Kademe Listesi</h3>
                     </div>
                     {% if aktif == 'Admin' or aktif == 'Yonetim' %}
+
+                        <div class="form-group">
+
                         <a onclick="onay()" type="button" class="btn btn-success">
                             <i class="fa fa-edit"></i>
                             Hepsini Onayla
@@ -220,6 +224,7 @@
                             <i class="fa fa-trash"></i>
                             Hepsini Reddet
                         </a>
+                        </div>
 
                     {% endif %}
                     <div class="card-body">

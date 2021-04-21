@@ -139,36 +139,38 @@
                         <form method="post" role="form">
                             <div class="card-body">
                                 {% csrf_token %}
+                                <div class="row">
 
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ search_form.name.label }}</label>
-                                        {{ search_form.name }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ search_form.name.label }}</label>
+                                            {{ search_form.name }}
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ search_form.location.label }}</label>
-                                        {{ search_form.location }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ search_form.location.label }}</label>
+                                            {{ search_form.location }}
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ search_form.startDate.label }}</label>
-                                        {{ search_form.startDate }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ search_form.startDate.label }}</label>
+                                            {{ search_form.startDate }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ search_form.finishDate.label }}</label>
-                                        {{ search_form.finishDate }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ search_form.finishDate.label }}</label>
+                                            {{ search_form.finishDate }}
+                                        </div>
                                     </div>
-                                </div>
 
 
+                                   </div>
                             </div>
                             <!-- /.card-body -->
 
