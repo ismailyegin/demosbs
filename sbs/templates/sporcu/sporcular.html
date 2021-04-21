@@ -128,37 +128,56 @@
 
 
     <section class="content">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>{{ aktif }}-
+                            Sporcu Listesi </h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Sporcu Listesi </a></li>
+                            {#              <li class="breadcrumb-item active">Advanced Form</li>#}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
 
         <div class="row">
-            <section class="col-lg-12 ">
+            <section class="col-12 ">
+                <div class="card ">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Sporcu Filtrele</h3>
+                    </div>
+                    <form method="post" role="form">
+
+                        <div class="card-body">
+                            {% csrf_token %}
 
 
-                <div class="card-body">
+                            <div class="row">
 
 
-                    <div class="card card-primary">
-                        <div class="card-header with-border">
-                            <h3 class="card-title">Sporcu Filtrele</h3>
-                        </div>
-                        <form method="post" role="form">
+                                <div class="col-2">
 
-                            <div class="card-body">
-                                {% csrf_token %}
+                                    <label> {{ user_form.first_name.label }}</label>
+                                    {{ user_form.first_name }}
 
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label> {{ user_form.first_name.label }}</label>
-                                        {{ user_form.first_name }}
-                                    </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label> {{ user_form.last_name.label }}</label>
-                                        {{ user_form.last_name }}
-                                    </div>
+                                <div class="col-2">
+
+                                    <label> {{ user_form.last_name.label }}</label>
+                                    {{ user_form.last_name }}
+
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label> T.C.</label>
                                         <input type="text" name="tc" class="form-control " placeholder="T.C."
@@ -167,14 +186,14 @@
                                                placeholder="" maxlength="11" id="id_tc">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label> {{ user_form.email.label }}</label>
                                         {{ user_form.email }}
                                     </div>
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label> {{ Sportclup.sportsClub.label }}</label>
                                         {{ Sportclup.sportsClub }}
@@ -184,43 +203,41 @@
 
                                 {% if aktif == 'Admin' %}
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="form-group">
                                             <label> {{ Sportclup.coach.label }}</label>
                                             {{ Sportclup.coach }}
                                         </div>
                                     </div>
                                 {% endif %}
-
-
                             </div>
 
-                            <!-- /.card-body -->
+                        </div>
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Ara</button>
-                            </div>
-                        </form>
+                        <!-- /.card-body -->
 
-
-                    </div>
-                    <!-- /.card -->
-
-
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Ara</button>
+                        </div>
+                    </form>
                 </div>
+
             </section>
+
+
+
         </div>
 
 
         <div class="row">
 
-            <section class="col-lg-12 ">
+            <section class="col-md-12 ">
 
 
-                <div class="card-body">
+                <div class="col-12">
 
 
-                    <div class="card card-primary">
+                    <div class="card ">
                         <div class="card-header with-border">
                             <h3 class="card-title">Sporcular</h3>
                         </div>
