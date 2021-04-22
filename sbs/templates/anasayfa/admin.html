@@ -85,76 +85,71 @@
         <!-- Main content -->
         <section class="content">
             <!-- Info cardes -->
-            {#        sayilar alani#}
-            <div class="row">
-
-                <div class="col-lg-3 col-6">
-                    <!-- small card -->
-                    <div class="small-card bg-info">
-                        <div class="inner">
-                            <h3>{{ total_athlete }}</h3>
-
-                            <p>Sporcu Sayısı</p>
-                        </div>
-                        {#                        <div class="icon">#}
-                        {#                            <i class="ion ion-bag"></i>#}
-                        {#                        </div>#}
-                        <a href="{% url 'sbs:sporcular' %}" class="small-card-footer">Sporcular <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small card -->
-                    <div class="small-card bg-success">
-                        <div class="inner">
-                            <h3>{{ total_coachs }}</h3>
-
-                            <p>Antrenör Sayısı</p>
-                        </div>
-                        {#                        <div class="icon">#}
-                        {#                            <i class="ion ion-bag"></i>#}
-                        {#                        </div>#}
-                        <a href="{% url 'sbs:antrenorler' %}" class="small-card-footer">Antronerler <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <!-- small card -->
-                    <div class="small-card bg-warning">
-                        <div class="inner">
-                            <h3>{{ total_judge }}</h3>
-
-                            <p>Hakem Sayısı</p>
-                        </div>
-                        {#                        <div class="icon">#}
-                        {#                            <i class="ion ion-"></i>#}
-                        {#                        </div>#}
-                        <a href="{% url 'sbs:hakemler' %}" class="small-card-footer">Hakemler <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                    <!-- small card -->
-                    <div class="small-card bg-danger">
-                        <div class="inner">
-                            <h3>{{ total_club }}</h3>
-
-                            <p>Kulüp Sayısı</p>
-                        </div>
-                        {#                        <div class="icon">#}
-                        {#                            <i class="ion-text-nowrap"></i>#}
-                        {#                        </div>#}
-                        <a href="{% url 'sbs:kulupler' %}" class="small-card-footer">Hakemler <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
 
 
-                <!-- /.col -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ total_athlete }}</h3>
+
+                <p>Sporcu Sayısı</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{% url 'sbs:sporcular' %}" class="small-box-footer">Sporcular<i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <!-- /.row -->
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3> {{ total_coachs }}</h3>
+
+                <p>Antrenör Sayısı</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+               <a href="{% url 'sbs:antrenorler' %}" class="small-box-footer">Anterörler<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ total_judge }}</h3>
+
+                <p>Hakem Sayısı</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{% url 'sbs:hakemler' %}" class="small-box-footer">Hakemler<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{ total_club }}</h3>
+
+                <p>Kulup Sayısı </p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="{% url 'sbs:kulupler' %}" class="small-box-footer">Kulupler <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
             {#müsabaka raporu#}
             <div class="row">
                 <div class="col-md-12">
