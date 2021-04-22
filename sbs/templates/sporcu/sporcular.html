@@ -336,8 +336,6 @@
     <script>
         $(function () {
             $('#sporcular').DataTable({
-
-
                 dom: 'Bfrtip',
 
                 language: {
@@ -365,38 +363,39 @@
                     {
                         extend: 'colvis',
                         text: "Ekle Çıkar",
-                        titleAttr: 'Ekle Çıkar'
+                        titleAttr: 'Ekle Çıkar',
+                         title: 'SBS',
 
 
                     },
                     {
                         extend: 'print',
-                        title: 'Sporcular',
+                        title: 'SBS',
                         text: "Yazdır",
-
                         titleAttr: 'Yazdır'
                     },
                     {
                         extend: 'pdfHtml5',
                         download: 'open',
                         text: "Pdf",
-
+                         title: 'SBS',
                         titleAttr: 'Pdf Kaydet'
                     },
 
                     {
                         extend: 'excelHtml5',
                         text: "Excel",
-                        titleAttr: 'Excel Kaydet'
+                        titleAttr: 'Excel Kaydet',
+                         title: 'SBS',
                     },
                     {
-                        text:'Json',
+                        text: 'Json',
                         action: function (e, dt, button, config) {
                             var data = dt.buttons.exportData();
 
                             $.fn.dataTable.fileSave(
                                 new Blob([JSON.stringify(data)]),
-                                'Sporcular.json'
+                                'sbs.json'
                             );
                         }
                     }

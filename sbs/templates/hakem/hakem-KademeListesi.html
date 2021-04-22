@@ -329,11 +329,8 @@
                     ['10 tane', '25 tane ', '50 tane ', '100 Tane', 'Hepsini Getir']
                 ],
 
-                buttons: [
-                    {##}
-                    {##}
-                    {#'copy',#}
-                    {#'csv',#}
+                'buttons': [
+
 
                     {
                         extend: "pageLength",
@@ -342,57 +339,47 @@
 
                     {
                         extend: 'colvis',
-                        text: '<i class=" fa  fa-th-list"></i>',
-                        titleAttr: 'Ekle Çıkar'
+                        text: "Ekle Çıkar",
+                        titleAttr: 'Ekle Çıkar',
+                         title: 'SBS',
 
 
                     },
                     {
                         extend: 'print',
-                        title: 'Sbs Bilgi Sistemi',
-                        text: '<i class="fa  fa-print"></i>',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        },
+                        title: 'SBS',
+                        text: "Yazdır",
                         titleAttr: 'Yazdır'
                     },
                     {
                         extend: 'pdfHtml5',
                         download: 'open',
-                        text: '<i class="fa fa-file-pdf-o"></i>',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        },
+                        text: "Pdf",
+                         title: 'SBS',
                         titleAttr: 'Pdf Kaydet'
                     },
 
                     {
                         extend: 'excelHtml5',
-                        title: 'Sbs Bilgi Sistemi',
-                        text: '<i class="fa fa-file-excel-o"></i>',
-                        messageTop: 'Sbs Bilgi Sistemi ',
-                        {#footer: true,#}
-                        exportOptions: {
-                            {#     yer degisimi de yapilabilir.#}
-                            columns: [0, 2, 1, 3, 4, 5]
-
-                        },
-                        titleAttr: 'Excel Kaydet'
+                        text: "Excel",
+                        titleAttr: 'Excel Kaydet',
+                         title: 'SBS',
                     },
                     {
-                        text: '<i class="fa fa-file-text-o"></i>',
+                        text: 'Json',
                         action: function (e, dt, button, config) {
                             var data = dt.buttons.exportData();
 
                             $.fn.dataTable.fileSave(
                                 new Blob([JSON.stringify(data)]),
-                                'Sporcular.json'
+                                'sbs.json'
                             );
                         }
                     }
 
 
                 ],
+                'bubble': true,
                 'paging': true,
                 'lengthChange': true,
                 'searching': true,
@@ -400,21 +387,7 @@
                 'info': true,
                 'autoWidth': true,
                 'responsive': true,
-                "columnDefs": [{
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0
-                }],
-                "order": [[1, 'asc']]
-
-
-            })
-
-            t.on('order.dt search.dt', function () {
-                t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
+                'select': true,
 
         })
     </script>

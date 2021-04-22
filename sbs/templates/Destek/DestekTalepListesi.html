@@ -212,46 +212,46 @@
 
                                 <div class="row">
 
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ user_form.first_name.label }}</label>
-                                        {{ user_form.first_name }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ user_form.first_name.label }}</label>
+                                            {{ user_form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ user_form.last_name.label }}</label>
+                                            {{ user_form.last_name }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> Önem Durumu</label>
+                                            <select name="importanceSort"
+                                                    class="form-control select2 select2-hidden-accessible"
+                                                    style="width: 100%; " id="id_importanceSort">
+                                                <option value="" selected>---------</option>
+
+                                                <option value="ACİL">ACİL</option>
+
+                                                <option value="ÖNEMLİ">ÖNEMLİ</option>
+
+                                                <option value="AZ ÖNEMLİ">AZ ÖNEMLİ</option>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label> {{ destek_form.status.label }}</label>
+                                            {{ destek_form.status }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ user_form.last_name.label }}</label>
-                                        {{ user_form.last_name }}
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> Önem Durumu</label>
-                                        <select name="importanceSort"
-                                                class="form-control select2 select2-hidden-accessible"
-                                                style="width: 100%; " id="id_importanceSort">
-                                            <option value="" selected>---------</option>
-
-                                            <option value="ACİL" >ACİL</option>
-
-                                            <option value="ÖNEMLİ">ÖNEMLİ</option>
-
-                                            <option value="AZ ÖNEMLİ">AZ ÖNEMLİ</option>
-
-                                        </select>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label> {{ destek_form.status.label }}</label>
-                                        {{ destek_form.status }}
-                                    </div>
-                                </div>
-</div>
 
                             </div>
                             <!-- /.card-body -->
@@ -362,7 +362,88 @@
         <!-- /.row (main row) -->
 
     </section>
+    <script>
+        $(function () {
+            $('#kullanicilar').DataTable({
+                dom: 'Bfrtip',
+
+                language: {
+                    buttons: {
+                        pageLength: {
+                            _: " %d  Tane Göster",
+                            '-1': "Hepsini Göster"
+                        }
+                    }
+                },
+
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    ['10 tane', '25 tane ', '50 tane ', '100 Tane', 'Hepsini Getir']
+                ],
+
+                'buttons': [
 
 
+                    {
+                        extend: "pageLength",
+                    },
+
+
+                    {
+                        extend: 'colvis',
+                        text: "Ekle Çıkar",
+                        titleAttr: 'Ekle Çıkar',
+                         title: 'SBS',
+
+
+                    },
+                    {
+                        extend: 'print',
+                        title: 'SBS',
+                        text: "Yazdır",
+                        titleAttr: 'Yazdır'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        download: 'open',
+                        text: "Pdf",
+                         title: 'SBS',
+                        titleAttr: 'Pdf Kaydet'
+                    },
+
+                    {
+                        extend: 'excelHtml5',
+                        text: "Excel",
+                        titleAttr: 'Excel Kaydet',
+                         title: 'SBS',
+                    },
+                    {
+                        text: 'Json',
+                        action: function (e, dt, button, config) {
+                            var data = dt.buttons.exportData();
+
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)]),
+                                'sbs.json'
+                            );
+                        }
+                    }
+
+
+                ],
+                'bubble': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                'responsive': true,
+                'select': true,
+            })
+
+        })
+
+    </script>
 {% endblock %}
 

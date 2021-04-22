@@ -263,7 +263,7 @@
 
         $(function () {
             $('#musabakalar').DataTable({
-                dom: 'Bfrtip',
+                   dom: 'Bfrtip',
 
                 language: {
                     buttons: {
@@ -279,11 +279,8 @@
                     ['10 tane', '25 tane ', '50 tane ', '100 Tane', 'Hepsini Getir']
                 ],
 
-                buttons: [
-                    {##}
-                    {##}
-                    {#'copy',#}
-                    {#'csv',#}
+                'buttons': [
+
 
                     {
                         extend: "pageLength",
@@ -292,45 +289,33 @@
 
                     {
                         extend: 'colvis',
-                        text: '<i class=" fa  fa-th-list"></i>',
+                        text: "Ekle Çıkar",
                         titleAttr: 'Ekle Çıkar'
 
 
                     },
                     {
                         extend: 'print',
-                        title: 'Sbs Bilgi Sistemi',
-                        text: '<i class="fa  fa-print"></i>',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        },
+                        title: 'Sporcular',
+                        text: "Yazdır",
+
                         titleAttr: 'Yazdır'
                     },
                     {
                         extend: 'pdfHtml5',
                         download: 'open',
-                        text: '<i class="fa fa-file-pdf-o"></i>',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        },
+                        text: "Pdf",
+
                         titleAttr: 'Pdf Kaydet'
                     },
 
                     {
                         extend: 'excelHtml5',
-                        title: 'Sbs Bilgi Sistemi',
-                        text: '<i class="fa fa-file-excel-o"></i>',
-                        messageTop: 'Sbs Bilgi Sistemi ',
-                        {#footer: true,#}
-                        exportOptions: {
-                            {#     yer degisimi de yapilabilir.#}
-                            columns: [0, 2, 1, 3, 4, 5]
-
-                        },
+                        text: "Excel",
                         titleAttr: 'Excel Kaydet'
                     },
                     {
-                        text: '<i class="fa fa-file-text-o"></i>',
+                        text:'Json',
                         action: function (e, dt, button, config) {
                             var data = dt.buttons.exportData();
 
@@ -343,6 +328,7 @@
 
 
                 ],
+                'bubble': true,
                 'paging': true,
                 'lengthChange': true,
                 'searching': true,
@@ -350,6 +336,7 @@
                 'info': true,
                 'autoWidth': true,
                 'responsive': true,
+                'select': true,
             })
 
         })
