@@ -111,18 +111,17 @@
                                                        onchange="previewImage()">
                                         </center>
 
-{#                                        <label> {{ person_form.profileImage.label }}</label>#}
-{##}
-{#                                        <center>#}
-{#                                            <img#}
-{#                                                    src="/media/{{ person_form.instance.profileImage }}"#}
-{#                                                    class="img-responsive img-bordered imagesize " alt="Resim Yok"#}
-{#                                                    style=" max-width: 60%; height: auto;"#}
-{##}
-{#                                            ><br>#}
-{#                                            {{ person_form.profileImage }}#}
-{#                                        </center>#}
-
+                                        {#                                        <label> {{ person_form.profileImage.label }}</label>#}
+                                        {##}
+                                        {#                                        <center>#}
+                                        {#                                            <img#}
+                                        {#                                                    src="/media/{{ person_form.instance.profileImage }}"#}
+                                        {#                                                    class="img-responsive img-bordered imagesize " alt="Resim Yok"#}
+                                        {#                                                    style=" max-width: 60%; height: auto;"#}
+                                        {##}
+                                        {#                                            ><br>#}
+                                        {#                                            {{ person_form.profileImage }}#}
+                                        {#                                        </center>#}
 
 
                                     </div>
@@ -211,349 +210,347 @@
                     </div>
 
                 </div>
-                {#            iletişim bilgileri #}
+
                 <div class="col-lg-7">
+                    {#            iletişim bilgileri #}
+                    <div class="col-lg-12">
 
-                    <div class="card card-info collapsed-card">
+                        <div class="card card-info collapsed-card">
 
 
-                        <div class="card-header with-border">
-                            <h3 class="card-title">İLETİŞİM BİLGİLERİ</h3>
+                            <div class="card-header with-border">
+                                <h3 class="card-title">İLETİŞİM BİLGİLERİ</h3>
 
-                            <div class="card-tools pull-right">
-                                <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                        class="fa fa-plus"></i>
-                                </button>
+                                <div class="card-tools pull-right">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <!-- /.card-tools -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body" style="display: none;">
+
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        {#                                    <div class="form-group">#}
+                                        {#                                        <label> {{ user_form.email.label }}</label>#}
+                                        {#                                        {{ user_form.email }}#}
+                                        {#                                    </div>#}
+                                        <div class="form-group">
+                                            <label> {{ communication_form.phoneNumber.label }}</label>
+                                            {{ communication_form.phoneNumber }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ communication_form.phoneNumber2.label }}</label>
+                                            {{ communication_form.phoneNumber2 }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ communication_form.phoneHome.label }}</label>
+                                            {{ communication_form.phoneHome }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ communication_form.phoneJop.label }}</label>
+                                            {{ communication_form.phoneJop }}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label> {{ communication_form.country.label }}</label>
+                                            {{ communication_form.country }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ communication_form.city.label }}</label>
+                                            {{ communication_form.city }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ communication_form.postalCode.label }}</label>
+                                            {{ communication_form.postalCode }}
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label> {{ communication_form.address.label }}</label>
+                                            {{ communication_form.address }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label> {{ communication_form.addressHome.label }}</label>
+                                            {{ communication_form.addressHome }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label> {{ communication_form.addressJop.label }}</label>
+                                            {{ communication_form.addressJop }}
+                                        </div>
+                                    </div>
+                                </div>
+
 
                             </div>
-
-
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body" style="display: none;">
-
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    {#                                    <div class="form-group">#}
-                                    {#                                        <label> {{ user_form.email.label }}</label>#}
-                                    {#                                        {{ user_form.email }}#}
-                                    {#                                    </div>#}
-                                    <div class="form-group">
-                                        <label> {{ communication_form.phoneNumber.label }}</label>
-                                        {{ communication_form.phoneNumber }}
-                                    </div>
-                                    <div class="form-group">
-                                        <label> {{ communication_form.phoneNumber2.label }}</label>
-                                        {{ communication_form.phoneNumber2 }}
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label> {{ communication_form.phoneHome.label }}</label>
-                                        {{ communication_form.phoneHome }}
-                                    </div>
-                                    <div class="form-group">
-                                        <label> {{ communication_form.phoneJop.label }}</label>
-                                        {{ communication_form.phoneJop }}
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label> {{ communication_form.country.label }}</label>
-                                        {{ communication_form.country }}
-                                    </div>
-                                    <div class="form-group">
-                                        <label> {{ communication_form.city.label }}</label>
-                                        {{ communication_form.city }}
-                                    </div>
-                                    <div class="form-group">
-                                        <label> {{ communication_form.postalCode.label }}</label>
-                                        {{ communication_form.postalCode }}
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label> {{ communication_form.address.label }}</label>
-                                        {{ communication_form.address }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label> {{ communication_form.addressHome.label }}</label>
-                                        {{ communication_form.addressHome }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label> {{ communication_form.addressJop.label }}</label>
-                                        {{ communication_form.addressJop }}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-
-
-                </div>
-
-
-
-
-            {#            nufus   bilgileri#}
-            <div class="col-lg-7">
-
-                <div class="card card-info collapsed-card">
-                    <div class="card-header with-border">
-                        <h3 class="card-title">NUFUS BİLGİLERİ</h3>
-
-                        <div class="card-tools pull-right">
-                            <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                    class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <!-- /.card-tools -->
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-
-                                <div class="form-group">
-                                    <label> {{ person_form.uyrukid.label }}</label>
-                                    {{ person_form.uyrukid }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ person_form.nufus_ailesirano.label }}</label>
-                                    {{ person_form.nufus_ailesirano }}
-                                </div>
-                                <div class="form-group">
-                                    <label> {{ person_form.nufus_ciltno.label }}</label>
-                                    {{ person_form.nufus_ciltno }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ person_form.nufus_sirano.label }}</label>
-                                    {{ person_form.nufus_sirano }}
-                                </div>
-
-
-                                <div class="card-footer">
-                                    <button class="btn btn-primary" type="submit">Kaydet</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-
-            </div>
-            {#            iş  bilgileri#}
-            <div class="col-lg-7">
-
-                <div class="card card-info collapsed-card">
-                    <div class="card-header with-border">
-                        <h3 class="card-title">İŞ BİLGİLERİ</h3>
-
-                        <div class="card-tools pull-right">
-                            <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                    class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <!-- /.card-tools -->
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-
-                                <div class="form-group">
-                                    <label> {{ person_form.meslek.label }}</label>
-                                    {{ person_form.meslek }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ person_form.is_unvani.label }}</label>
-                                    {{ person_form.is_unvani }}
-                                </div>
-                                <div class="form-group">
-                                    <label> {{ person_form.kurum.label }}</label>
-                                    {{ person_form.kurum }}
-                                </div>
-
-
-                                <div class="card-footer">
-                                    <button class="btn btn-primary" type="submit">Kaydet</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-
-            </div>
-
-
-            {#            egitim   bilgileri#}
-            <div class="col-lg-7">
-
-                <div class="card card-info collapsed-card">
-                    <div class="card-header with-border">
-                        <h3 class="card-title">EGİTİM BİLGİLERİ</h3>
-
-                        <div class="card-tools pull-right">
-                            <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                    class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <!-- /.card-tools -->
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-
-                                <div class="form-group">
-                                    <label> {{ person_form.education.label }}</label>
-                                    {{ person_form.education }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ person_form.mezunokul.label }}</label>
-                                    {{ person_form.mezunokul }}
-                                </div>
-
-
-                                <div class="card-footer">
-                                    <button class="btn btn-primary" type="submit">Kaydet</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-
-            </div>
-
-            {#            beden bilgileri#}
-            <div class="col-lg-7">
-
-
-                <div class="card card-info collapsed-card">
-                    <div class="card-header with-border">
-                        <h3 class="card-title">BEDEN BİLGİLERİ</h3>
-
-                        <div class="card-tools pull-right">
-                            <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                    class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-
-
-                        <div class="row">
-                            <div class="col-lg-12">
-
-                                <div class="form-group">
-                                    <label> {{ person_form.height.label }}</label>
-                                    {{ person_form.height }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ person_form.weight.label }}</label>
-                                    {{ person_form.weight }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ metarial_form.ayakkabi.label }}</label>
-                                    {{ metarial_form.ayakkabi }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ metarial_form.esofman.label }}</label>
-                                    {{ metarial_form.esofman }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ metarial_form.tshirt.label }}</label>
-                                    {{ metarial_form.tshirt }}
-                                </div>
-
-                                <div class="form-group">
-                                    <label> {{ metarial_form.raket.label }}</label>
-                                    {{ metarial_form.raket }}
-                                </div>
-
-                                <div class="card-footer">
-                                    <button class="btn btn-primary" type="submit">Kaydet</button>
-                                </div>
-
-                            </div>
+                            <!-- /.card-body -->
                         </div>
 
 
                     </div>
-                    <!-- /.card-body -->
-                </div>
 
 
-            </div>
-                {#            grup bilgileri    #}
-                {% if aktif == "Admin" %}
-                    <div class="col-lg-7">
+                    {#            nufus   bilgileri#}
+                    <div class="col-lg-12">
 
                         <div class="card card-info collapsed-card">
                             <div class="card-header with-border">
-                                <h3 class="card-title">GRUP BİLGİLERİ</h3>
+                                <h3 class="card-title">NUFUS BİLGİLERİ</h3>
 
                                 <div class="card-tools pull-right">
-                                    <button type="button" class="btn btn-card-tool" data-widget="collapse"><i
-                                            class="fa fa-plus"></i>
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.uyrukid.label }}</label>
+                                            {{ person_form.uyrukid }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.nufus_ailesirano.label }}</label>
+                                            {{ person_form.nufus_ailesirano }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ person_form.nufus_ciltno.label }}</label>
+                                            {{ person_form.nufus_ciltno }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.nufus_sirano.label }}</label>
+                                            {{ person_form.nufus_sirano }}
+                                        </div>
+
+
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary" type="submit">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+                    {#            iş  bilgileri#}
+                    <div class="col-lg-12">
+
+                        <div class="card card-info collapsed-card">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">İŞ BİLGİLERİ</h3>
+
+                                <div class="card-tools pull-right">
+                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.meslek.label }}</label>
+                                            {{ person_form.meslek }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.is_unvani.label }}</label>
+                                            {{ person_form.is_unvani }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label> {{ person_form.kurum.label }}</label>
+                                            {{ person_form.kurum }}
+                                        </div>
+
+
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary" type="submit">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+
+
+                    {#            egitim   bilgileri#}
+                    <div class="col-lg-12">
+
+                        <div class="card card-info collapsed-card">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">EGİTİM BİLGİLERİ</h3>
+
+                                <div class="card-tools pull-right">
+                                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.education.label }}</label>
+                                            {{ person_form.education }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ person_form.mezunokul.label }}</label>
+                                            {{ person_form.mezunokul }}
+                                        </div>
+
+
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary" type="submit">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+
+                    {#            beden bilgileri#}
+                    <div class="col-lg-12">
+
+
+                        <div class="card card-info collapsed-card">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">BEDEN BİLGİLERİ</h3>
+
+                                <div class="card-tools pull-right">
+                                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                                 <!-- /.card-tools -->
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <div class="card-header with-border">
-                                    <div class="btn-group">
-                                        <div class="row">
 
 
-                                            {% for group in groups %}
+                                <div class="row">
+                                    <div class="col-lg-12">
 
-                                                <div class="col-md-2 ">
-                                                    <div class="form-group">
-                                                        <a id="group-{{ group.pk }}"
-                                                           type="button" class="btn btn-block  btn-danger text-center"
-                                                           id="{{ group.name }}">{{ group }}
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                        <div class="form-group">
+                                            <label> {{ person_form.height.label }}</label>
+                                            {{ person_form.height }}
+                                        </div>
 
-                                            {% endfor %}
+                                        <div class="form-group">
+                                            <label> {{ person_form.weight.label }}</label>
+                                            {{ person_form.weight }}
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label> {{ metarial_form.ayakkabi.label }}</label>
+                                            {{ metarial_form.ayakkabi }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ metarial_form.esofman.label }}</label>
+                                            {{ metarial_form.esofman }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ metarial_form.tshirt.label }}</label>
+                                            {{ metarial_form.tshirt }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label> {{ metarial_form.raket.label }}</label>
+                                            {{ metarial_form.raket }}
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary" type="submit">Kaydet</button>
                                         </div>
 
                                     </div>
@@ -566,10 +563,67 @@
 
 
                     </div>
-                {% endif %}
+                    {#            grup bilgileri    #}
+                    {% if aktif == "Admin" %}
+                        <div class="col-lg-12">
+
+                            <div class="card card-info collapsed-card">
+                                <div class="card-header with-border">
+                                    <h3 class="card-title">GRUP BİLGİLERİ</h3>
+
+                                    <div class="card-tools pull-right">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i>
+                                    </button>
 
 
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
 
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="card-header with-border">
+                                        <div class="btn-group">
+                                            <div class="row">
+
+
+                                                {% for group in groups %}
+
+                                                    <div class="col-md-2 ">
+                                                        <div class="form-group">
+                                                            <a id="group-{{ group.pk }}"
+                                                               type="button"
+                                                               class="btn btn-block  btn-danger text-center"
+                                                               id="{{ group.name }}">{{ group }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                {% endfor %}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
+
+                        </div>
+                    {% endif %}
+
+
+                </div>
             </div>
 
         </form>
@@ -577,7 +631,7 @@
 
     </section>
     <script>
-    
+
         function previewImage() {
             var file = document.getElementById("id_profileImage").files;
             if (file.length > 0) {
