@@ -148,21 +148,21 @@
 
                             <div class="card-body">
                                 {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>{{ search_form.product.label }}</label>
+                                        {{ search_form.product }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{ search_form.club.label }}</label>
+                                        {{ search_form.club }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>{{ search_form.date.label }}</label>
+                                        {{ search_form.date }}
+                                    </div>
 
-                                <div class="col-md-4">
-                                    <label>{{ search_form.product.label }}</label>
-                                    {{ search_form.product }}
                                 </div>
-                                <div class="col-md-4">
-                                    <label>{{ search_form.club.label }}</label>
-                                    {{ search_form.club }}
-                                </div>
-                                <div class="col-md-4">
-                                    <label>{{ search_form.date.label }}</label>
-                                    {{ search_form.date }}
-                                </div>
-
-
                             </div>
 
                             <!-- /.card-body -->
