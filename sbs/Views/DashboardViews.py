@@ -393,21 +393,26 @@ def return_admin_dashboard(request):
     total_coachs = Coach.objects.all().count()
     total_judge = Judge.objects.all().count()
     total_user = User.objects.all().count()
+    lastcompetition = Competition.objects.none()
 
     max = 0
+    max_male=0
+    max_female=0
     maxcom = Competition.objects.none()
     competitions = Competition.objects.filter().order_by('creationDate')
     for item in competitions:
         if max < int(CompetitionsAthlete.objects.filter(competition=item).count()):
             maxcom = item
             max = int(CompetitionsAthlete.objects.filter(competition=item).count())
-
-    max = CompetitionsAthlete.objects.filter(competition=maxcom).count()
-    max_male = CompetitionsAthlete.objects.filter(competition=maxcom, athlete__person__gender=Person.MALE).count()
-    max_female = CompetitionsAthlete.objects.filter(competition=maxcom, athlete__person__gender=Person.FEMALE).count()
+    if maxcom:
+        max = CompetitionsAthlete.objects.filter(competition=maxcom).count()
+        max_male = CompetitionsAthlete.objects.filter(competition=maxcom, athlete__person__gender=Person.MALE).count()
+        max_female = CompetitionsAthlete.objects.filter(competition=maxcom, athlete__person__gender=Person.FEMALE).count()
 
     competitions = Competition.objects.filter().order_by('creationDate')[:6]
-    lastcompetition = Competition.objects.filter().order_by('-creationDate')[0]
+    if Competition.objects.all():
+        lastcompetition = Competition.objects.order_by('-creationDate')[0]
+
 
     lastcompetitionArray = []
 
@@ -454,6 +459,22 @@ def return_admin_dashboard(request):
         coach_grades.append(beka)
     active = Activity.objects.all().order_by('-creationDate')[:5]
     logs = Logs.objects.all().order_by('-creationDate')[:5]
+    if lastcompetition:
+        competition_athlete_count=CompetitionsAthlete.objects.filter(competition=lastcompetition).count()
+        competition_male= CompetitionsAthlete.objects.filter(competition=lastcompetition,athlete__person__gender=Person.MALE).count()
+        competition_male_x= int(CompetitionsAthlete.objects.filter(competition=lastcompetition,athlete__person__gender=Person.MALE).count() * 100) / CompetitionsAthlete.objects.filter(competition= maxcom, athlete__person__gender=Person.MALE).count()
+        competition_female= CompetitionsAthlete.objects.filter(competition=lastcompetition, athlete__person__gender=Person.FEMALE).count()
+        competition_female_x= int((CompetitionsAthlete.objects.filter(competition=lastcompetition, athlete__person__gender=Person.FEMALE).count() * 100) / CompetitionsAthlete.objects.filter( competition=maxcom, athlete__person__gender=Person.FEMALE).count())
+        max_x= int((CompetitionsAthlete.objects.filter(competition=lastcompetition).count() * 100) / max)
+
+    else:
+        competition_athlete_count = 0
+        competition_male = 0
+        competition_male_x = 0
+        competition_female = 0
+        competition_female_x = 0
+        max_x = 0
+
     return render(request, 'anasayfa/admin.html',
                   {
                       'active': active,
@@ -463,22 +484,13 @@ def return_admin_dashboard(request):
                       'judge_grades': judge_grades,
                       'max_male': max_male,
                       'max_female': max_female,
-                      'competition_male': CompetitionsAthlete.objects.filter(competition=lastcompetition,
-                                                                             athlete__person__gender=Person.MALE).count(),
-                      'competition_male_x': int((CompetitionsAthlete.objects.filter(competition=lastcompetition,
-                                                                                    athlete__person__gender=Person.MALE).count() * 100) / CompetitionsAthlete.objects.filter(
-                          competition=maxcom, athlete__person__gender=Person.MALE).count()),
-                      'competition_female': CompetitionsAthlete.objects.filter(competition=lastcompetition,
-                                                                               athlete__person__gender=Person.FEMALE).count(),
-                      'competition_female_x': int((CompetitionsAthlete.objects.filter(competition=lastcompetition,
-                                                                                      athlete__person__gender=Person.FEMALE).count() * 100) / CompetitionsAthlete.objects.filter(
-                          competition=maxcom, athlete__person__gender=Person.FEMALE).count()),
-                      'competition_athlete_count': CompetitionsAthlete.objects.filter(
-                          competition=lastcompetition).count(),
+                      'competition_male': competition_male,
+                      'competition_male_x': competition_male_x,
+                      'competition_female': competition_female,
+                      'competition_female_x': competition_female_x,
+                      'competition_athlete_count': competition_athlete_count,
                       'max': max,
-                      'max_x': int(
-                          (CompetitionsAthlete.objects.filter(competition=lastcompetition).count() * 100) / max),
-
+                      'max_x':max_x,
                       'lastcompetition': lastcompetition,
                       'data': datacount, 'total_club_user': total_club_user,
                       'total_club': total_club,
@@ -492,7 +504,7 @@ def return_admin_dashboard(request):
                       'total_notifications_clup': total_notifications_clup,
                       'notifications_tatal': notifications_tatal
 
-                   })
+                  })
 
 
 def City_athlete_cout(request):

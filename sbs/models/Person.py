@@ -2,7 +2,6 @@ from django.db import models
 from sbs.models.Document import Document
 from sbs.models.Penal import Penal
 from sbs.models.Material import Material
-from sbs.models.Nationnality import Nationnality
 
 from unicode_tr import unicode_tr
 
