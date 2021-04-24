@@ -11,6 +11,7 @@ from sbs.models.Logs import Logs
 from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceCoach import ReferenceCoach
 from sbs.models.ReferenceReferee import ReferenceReferee
+from sbs.models.MenuArsiv import MenuArsiv
 
 
 def get_client_ip(request):
@@ -76,6 +77,10 @@ def getClubUserMenu(request):
     clubusermenus = MenuClubUser.objects.all().order_by("sorting")
     return {'clubusermenus': clubusermenus}
 
+def getArsivMenu(request):
+    arsivmenus = MenuArsiv.objects.all().order_by("sorting")
+    return {'arsivmenus': arsivmenus}
+
 
 def show_urls(urllist, depth=0):
     urls = []
@@ -134,7 +139,7 @@ def control_access(request):
             if request.resolver_match.url_name == perm.name:
                 is_exist = True
 
-        if group.name == "Admin" or group.name == "Yonetim":
+        if group.name == "Admin" or group.name == "Yonetim" or group.name == "Arsiv":
             is_exist = True
 
     return is_exist

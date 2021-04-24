@@ -76,6 +76,8 @@ def login(request):
 
             elif active == 'Admin':
                 return redirect('sbs:admin')
+            elif active == 'Arsiv':
+                return redirect('sbs:evrak-anasayfa')
             else:
                 return redirect('accounts:logout')
 
