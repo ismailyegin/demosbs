@@ -100,137 +100,139 @@
 
 
 
-        <section class="content">
-                <section class="content-header">
+    <section class="content">
+        <section class="content-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3> Dosya Güncelle </h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="{% url "sbs:dosya-ekle" dosya.klasor.pk %}"
+                               type="button" class="btn btn-success"><i
+                                    class="fa fa-file"></i> Yeni Dosya Ekle</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <button id="dosyadelete"
+                                    type="button" class="btn btn-danger"><i
+                                    class="fa fa-trash"></i> Dosyayı Sil
+                            </button>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+
         <div class="row">
-            <div class="col-sm-6">
-                <h3>   Dosya  Güncelle </h3>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">
-                                   <a href="{% url "sbs:dosya-ekle" dosya.klasor.pk %}"
-                    type="button" class="btn btn-success"><i
-                    class="fa fa-file"></i> Yeni Dosya Ekle</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                         <button id="dosyadelete"
-                    type="button" class="btn btn-danger"><i
-                    class="fa fa-trash"></i> Dosyayı Sil
-            </button>
-                    </li>
 
-                </ol>
-            </div>
-        </div>
-    </section>
+            <div class="col-lg-12">
+                <div class="card card-primary card-outline">
+                    {#                <div class="card-header with-border">#}
+                    {#                    <h3 class="card-title"> Dosya Evrak Ekle </h3>#}
+                    {#                </div>#}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Birim</label>
+                                    <a href="{% url 'sbs:arsiv-birimUpdate' dosya.klasor.birim.pk %}">
 
-
-            <div class="row">
-
-                <div class="col-lg-12">
-            <div class="card card-primary card-outline">
-{#                <div class="card-header with-border">#}
-{#                    <h3 class="card-title"> Dosya Evrak Ekle </h3>#}
-{#                </div>#}
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>Birim</label>
-                            <a href="{% url 'sbs:arsiv-birimUpdate' dosya.klasor.birim.pk %}">
-
-                                <div class="input-group margin">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-align-left"></i></button>
-                                    </div>
-                                    <!-- /btn-group -->
-                                    <input type="text" class="form-control"
-                                       value="{{ dosya.klasor.birim }}" disabled>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>Klasör</label>
-                            <a href="{% url 'sbs:klasor-guncelle' dosya.klasor.pk %}">
-                                <div class="input-group margin">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-align-left"></i></button>
-                                    </div>
-                                    <!-- /btn-group -->
-                                    <input type="text" class="form-control" value="{{ dosya.klasor }}"
-                                       disabled>
-                                </div>
-
-                            </a>
-
-                    </div>
-                </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>Konum</label>
-                            <a href="{% url 'sbs:arsiv-konumUpdate' dosya.klasor.location.pk %}">
-                                <div class="input-group margin">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-align-left"></i></button>
-                                    </div>
-                                    <!-- /btn-group -->
-                                    <input type="text" class="form-control" value="{{ dosya.klasor.location }}"
-                                           disabled>
-                                </div>
-
-                            </a>
-
-                        </div>
-                    </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card card-primary">
-                                        <div class="card-header with-border">
-                                            <h3 class="card-title"> Evrak Ekle </h3>
+                                        <div class="input-group margin">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-warning"><i
+                                                        class="fa fa-align-left"></i></button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input type="text" class="form-control"
+                                                   value="{{ dosya.klasor.birim }}" disabled>
                                         </div>
-                        <div class="card-body">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Klasör</label>
+                                    <a href="{% url 'sbs:klasor-guncelle' dosya.klasor.pk %}">
+                                        <div class="input-group margin">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-warning"><i
+                                                        class="fa fa-align-left"></i></button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input type="text" class="form-control" value="{{ dosya.klasor }}"
+                                                   disabled>
+                                        </div>
 
-                            <div id="dropzone">
-                                <form action="{% url 'sbs:dosya-guncelle' dosya.pk %}"
-                                      class="dropzone needsclick dz-clickable"
-                                      id="pdf">
+                                    </a>
 
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Konum</label>
+                                    <a href="{% url 'sbs:arsiv-konumUpdate' dosya.klasor.location.pk %}">
+                                        <div class="input-group margin">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-warning"><i
+                                                        class="fa fa-align-left"></i></button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input type="text" class="form-control" value="{{ dosya.klasor.location }}"
+                                                   disabled>
+                                        </div>
 
-                                    {% csrf_token %}
+                                    </a>
 
-                                    <div class="dz-message needsclick">
-                                        <button type="button" class="dz-button">Dosyalari buraya bırakın veya yüklemek
-                                            için tıklayın.
-                                        </button>
-
-
-                                    </div>
-
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-primary">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"> Evrak Ekle </h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div id="dropzone">
+                            <form action="{% url 'sbs:dosya-guncelle' dosya.pk %}"
+                                  class="dropzone needsclick dz-clickable"
+                                  id="pdf">
 
 
+                                {% csrf_token %}
 
-            <form method="post" role="form">
+                                <div class="dz-message needsclick">
+                                    <button type="button" class="dz-button">Dosyalari buraya bırakın veya yüklemek
+                                        için tıklayın.
+                                    </button>
+
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <form method="post" role="form">
             {% csrf_token %}
 
 
-                <div class="row">
+            <div class="row">
                 <div class="col-lg-3">
                     <div class="card card-primary">
                         <div class="card-header with-border">
@@ -248,53 +250,52 @@
                 </div>
                 <div class="col-lg-9 ">
 
-                        <div class="card card-primary">
-                            <div class="card-header with-border">
-                                <h3 class="card-title">Evraklar</h3>
+                    <div class="card card-primary">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">Evraklar</h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="btn-group">
+
+
+                                <button type="button" class="btn btn-adn" id="btnleft">
+                                    <span class="fa fa-angle-left"></span>
+                                </button>
+                                <button type="button" class="btn btn-adn" id="btnright">
+                                    <span class="fa fa-angle-right"></span>
+                                </button>
+                                <button type="button" class="btn btn-adn" id="btndownload">
+                                    <span class="fa fa-download"></span>
+                                </button>
+                                <button type="button" class="btn btn-adn" id="btndelete">
+                                    <span class="fa fa-trash"></span>
+                                </button>
                             </div>
+                            <div class="pull-right">
+                                <b><span id="valueone"></span><span id="sum"></span></b>
 
-                            <div class="card-body">
-
-                                    <div class="btn-group">
-
-
-                                    <button type="button" class="btn btn-adn" id="btnleft">
-                                        <span class="fa fa-angle-left"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-adn" id="btnright">
-                                        <span class="fa fa-angle-right"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-adn" id="btndownload" >
-                                        <span class="fa fa-download"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-adn" id="btndelete">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                    </div>
-                               <div class="pull-right">
-                                    <b><span id="valueone"></span><span id="sum"></span></b>
-
-                                </div>
-
-
-                            </div>
-
-
-                            <div class="card-body">
-
-                                {% if evraklist %}
-                                <div class="embed-responsive embed-responsive-4by3">
-                                    <iframe class="embed-responsive-item" id="idpdf" src="/media/{{ evraklist |first }}"
-                                            allowfullscreen></iframe>
-                                </div>
-                                {% endif %}
-                                <!-- /.card -->
                             </div>
 
 
                         </div>
-                        <!-- /.card -->
 
+
+                        <div class="card-body">
+
+                            {% if evraklist %}
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item" id="idpdf" src="/media/{{ evraklist |first }}"
+                                            allowfullscreen></iframe>
+                                </div>
+                            {% endif %}
+                            <!-- /.card -->
+                        </div>
+
+
+                    </div>
+                    <!-- /.card -->
 
 
                 </div>
@@ -325,9 +326,9 @@
             console.log('bendem selam olsun');
 
             console.log(dizi.length);
-            if (dizi.length !=0){
-                $("#sum").text("/"+dizi.length);
-                $("#valueone").text(say+1);
+            if (dizi.length != 0) {
+                $("#sum").text("/" + dizi.length);
+                $("#valueone").text(say + 1);
             }
 
         });
@@ -344,7 +345,7 @@
                 say += a;
                 $("#idpdf").attr("src", "/media/" + dizi[say].title);
             }
-            if (dizi.length !=0) {
+            if (dizi.length != 0) {
                 $("#valueone").text(say + 1);
             }
         }
@@ -391,7 +392,6 @@
             });
 
         });
-
 
 
         $("#dosyadelete").click(function (e) {

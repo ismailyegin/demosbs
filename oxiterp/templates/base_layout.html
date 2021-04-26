@@ -372,17 +372,16 @@
                             {% endif %}
                         {% endfor %}
                     {% elif aktif == 'Arsiv' %}
-
                         {% for menu in arsivmenus %}
                             {% if menu.is_parent %}
                                 <li class="nav-item menu-is-opening menu-open">
-                                    <a href="#" class="nav-link ">
-                                        <i class="nav-icon fas {{ menu.fa_icon }}"></i>
-                                        <p>
-                                            {{ menu.name }}
-                                            <i class="fas fa-angle-left right"></i>
-                                        </p>
-                                    </a>
+{#                                    <a href="#" class="nav-link ">#}
+{#                                        <i class="nav-icon fas {{ menu.fa_icon }}"></i>#}
+{#                                        <p>#}
+{#                                            {{ menu.name }}#}
+{#                                            <i class="fas fa-angle-left right"></i>#}
+{#                                        </p>#}
+{#                                    </a>#}
                                     <ul class="nav nav-treeview">
                                         {% for menusub in arsivmenus %}
                                             {% if menusub.parent.id is menu.id %}
