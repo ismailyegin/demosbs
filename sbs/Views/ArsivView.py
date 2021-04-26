@@ -414,13 +414,40 @@ def arsiv_anasayfa(request):
     if not perm:
         logout(request)
         return redirect('accounts:login')
-    units=Abirim.objects.all()
-    klasor=Aklasor.objects.all()
-    dosyalar=Adosya.objects.all()
+
+    data=[]
+    oran=[]
+    units_count=Abirim.objects.count()
+    klasor_count=Aklasor.objects.count()
+    dosyalar_count=Adosya.objects.count()
+    evrak_count=Aevrak.objects.count()
+    # öz yinelemeli hale gelecek
+    beka=[]
+    birimler=Abirim.objects.distinct()
+    for birim in birimler:
+        sayi = 0
+        klasorler=Aklasor.objects.filter(birim=birim)
+        for klasor in klasorler:
+            dosyalar=Adosya.objects.filter(klasor=klasor)
+            for dosya in dosyalar:
+                sayi += int(dosya.evrak.count())
+        beka.append((birim.name,sayi))
+    def takeSecond(elem):
+        return elem[1]
+    beka.sort(key=takeSecond, reverse=True)
+    for item in beka[:6]:
+        data.append({'sayi':item[1],'birim':item[0]})
+        oran.append({'oran':round((item[1]/beka[0][1])*100)})
+
+
     return render(request, "arsiv/arsivAnasayfa.html",
-                  {'units': units,
-                   'klasor':klasor,
-                   'files':dosyalar
+                  {'units_count': units_count,
+                   'klasor_count':klasor_count,
+                   'dosyalar_count':dosyalar_count,
+                   'evrak_count':evrak_count,
+                   'data':data,
+                   'oran':oran,
+
                    }
                   )
 @login_required
