@@ -8,6 +8,10 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     {% load static %}
+    {% if aktif == "Arsiv" %}
+        <link rel="shortcut icon" type="image/png" href="/demosbs/media/kobiltek.ico"/>
+    {%endif %}
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -234,6 +238,7 @@
 
                                 {% elif aktif == "Hakem" %}
                                     <small> Hakem</small>
+
 
 
 

@@ -8,7 +8,7 @@ from sbs.models.CategoryItem import CategoryItem
 class AklasorForm(ModelForm):
     class Meta:
         model = Aklasor
-        fields = '__all__'
+        fields = ['name','sirano','location','birim','startyear','finishyear']
     def __init__(self, *args, **kwargs):
         super(AklasorForm,self).__init__(*args, **kwargs)
         for visible in self.visible_fields():

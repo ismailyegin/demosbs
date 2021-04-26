@@ -7,4 +7,5 @@ class Adosya(models.Model):
     evrak=models.ManyToManyField(Aevrak)
     creationDate = models.DateTimeField(auto_now_add=True)
     operationDate = models.DateTimeField(auto_now=True)
+    kobilid=models.IntegerField(null=False,blank=False)
 
