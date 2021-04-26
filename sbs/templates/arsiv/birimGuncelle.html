@@ -95,29 +95,34 @@
 
     {% endif %}
 
-      <section class="content-header">
-        <h1>
-            Birim Güncelle
-
-        </h1>
-        <ol class="breadcrumb">
 
 
-            <button href="{% url "sbs:arsiv-birimEkle" %}"
-                    type="button" class="btn btn-success"><i
-                    class="fa fa-file"></i>    Yeni Birim Ekle</button>
-
-
-            <button id="birimdelete"
-                                       type="button" class="btn btn-danger"><i
-                                            class="fa fa-trash"></i> Birimi Sil
-                                             </button>
-
-
-        </ol>
-    </section>
 
     <section class="content">
+        <section class="content-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Birim Güncelle </h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <button href="{% url "sbs:arsiv-birimEkle" %}"
+                    type="button" class="btn btn-success"><i
+                                class="fa fa-file"></i> Yeni Birim Ekle
+                        </button>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <button id="birimdelete"
+                                       type="button" class="btn btn-danger"><i
+                                            class="fa fa-trash"></i> Birimi Sil
+                        </button>
+                    </li>
+
+                </ol>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -147,7 +152,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="card card-primary">
+                    <div class="card card-primary card-outline">
                         <div class="card-header with-border">
                             <h3 class="card-title">Parametreler</h3>
                         </div>
@@ -224,7 +229,7 @@
          <div class="row">
             <section class="col-lg-12 ">
                 <div class="card-body">
-                    <div class="card card-primary">
+                    <div class="card card-primary card-outline">
                         <div class="card-header with-border">
                             <h3 class="card-title">Klasörler</h3>
                         </div>
@@ -306,16 +311,161 @@
     </section>
     <script>
         $(function () {
-            $('#kategori').DataTable({
+            $('#kullanicilar').DataTable({
+                dom: 'Bfrtip',
+
+                language: {
+                    buttons: {
+                        pageLength: {
+                            _: " %d  Tane Göster",
+                            '-1': "Hepsini Göster"
+                        }
+                    }
+                },
+
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    ['10 tane', '25 tane ', '50 tane ', '100 Tane', 'Hepsini Getir']
+                ],
+
+                'buttons': [
+
+
+                    {
+                        extend: "pageLength",
+                    },
+
+
+                    {
+                        extend: 'colvis',
+                        text: "Ekle Çıkar",
+                        titleAttr: 'Ekle Çıkar'
+
+
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Sporcular',
+                        text: "Yazdır",
+
+                        titleAttr: 'Yazdır'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        download: 'open',
+                        text: "Pdf",
+
+                        titleAttr: 'Pdf Kaydet'
+                    },
+
+                    {
+                        extend: 'excelHtml5',
+                        text: "Excel",
+                        titleAttr: 'Excel Kaydet'
+                    },
+                    {
+                        text: 'Json',
+                        action: function (e, dt, button, config) {
+                            var data = dt.buttons.exportData();
+
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)]),
+                                'Sporcular.json'
+                            );
+                        }
+                    }
+
+
+                ],
+                'bubble': true,
                 'paging': true,
-                'lengthChange': false,
+                'lengthChange': true,
                 'searching': true,
                 'ordering': true,
-                'info': false,
-                'autoWidth': true
-            })
+                'info': true,
+                'autoWidth': true,
+                'responsive': true,
+                'select': true,
+            });
 
-        })
+            $('#kategori').DataTable({
+                dom: 'Bfrtip',
+
+                language: {
+                    buttons: {
+                        pageLength: {
+                            _: " %d  Tane Göster",
+                            '-1': "Hepsini Göster"
+                        }
+                    }
+                },
+
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    ['10 tane', '25 tane ', '50 tane ', '100 Tane', 'Hepsini Getir']
+                ],
+
+                'buttons': [
+
+
+                    {
+                        extend: "pageLength",
+                    },
+
+
+                    {
+                        extend: 'colvis',
+                        text: "Ekle Çıkar",
+                        titleAttr: 'Ekle Çıkar'
+
+
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Sporcular',
+                        text: "Yazdır",
+
+                        titleAttr: 'Yazdır'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        download: 'open',
+                        text: "Pdf",
+
+                        titleAttr: 'Pdf Kaydet'
+                    },
+
+                    {
+                        extend: 'excelHtml5',
+                        text: "Excel",
+                        titleAttr: 'Excel Kaydet'
+                    },
+                    {
+                        text: 'Json',
+                        action: function (e, dt, button, config) {
+                            var data = dt.buttons.exportData();
+
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)]),
+                                'Sporcular.json'
+                            );
+                        }
+                    }
+
+
+                ],
+                'bubble': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                'responsive': true,
+                'select': true,
+            });
+
+        });
 
         function deleteCategoryItem(id) {
             var html = ''

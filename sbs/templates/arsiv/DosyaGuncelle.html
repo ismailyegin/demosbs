@@ -94,35 +94,42 @@
     {% endif %}
 
 
- <section class="content-header">
-        <h1>
-            Dosya  Güncelle
-        </h1>
-        <ol class="breadcrumb">
 
 
 
-            <a href="{% url "sbs:dosya-ekle" dosya.klasor.pk %}"
-                    type="button" class="btn btn-success"><i
-                    class="fa fa-file"></i> Yeni Dosya Ekle</a>
-
-
-            <button id="dosyadelete"
-                    type="button" class="btn btn-danger"><i
-                    class="fa fa-trash"></i> Dosyayı Sil
-            </button>
-        </ol>
-    </section>
 
 
 
         <section class="content">
+                <section class="content-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>   Dosya  Güncelle </h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                                   <a href="{% url "sbs:dosya-ekle" dosya.klasor.pk %}"
+                    type="button" class="btn btn-success"><i
+                    class="fa fa-file"></i> Yeni Dosya Ekle</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                         <button id="dosyadelete"
+                    type="button" class="btn btn-danger"><i
+                    class="fa fa-trash"></i> Dosyayı Sil
+            </button>
+                    </li>
+
+                </ol>
+            </div>
+        </div>
+    </section>
 
 
             <div class="row">
 
                 <div class="col-lg-12">
-            <div class="card card-primary">
+            <div class="card card-primary card-outline">
 {#                <div class="card-header with-border">#}
 {#                    <h3 class="card-title"> Dosya Evrak Ekle </h3>#}
 {#                </div>#}
@@ -240,7 +247,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9 ">
-                    <div class="card-body">
+
                         <div class="card card-primary">
                             <div class="card-header with-border">
                                 <h3 class="card-title">Evraklar</h3>
@@ -289,7 +296,7 @@
                         <!-- /.card -->
 
 
-                    </div>
+
                 </div>
 
             </div>

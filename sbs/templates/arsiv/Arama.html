@@ -194,19 +194,37 @@
         </div>
     </div>
     <section class="content">
+
+
+            <section class="content-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Arama Alanı </h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'sbs:evrak-anasayfa' %}">Arşiv Anasayfa </a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+
+
         <div class="row">
 
 
             <div class="col-md-12">
                 <!-- Custom Tabs (Pulled to the right) -->
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs pull-right" id="navtop">
-                        <li class="active"><a href="#genel" data-toggle="tab" aria-expanded="true">Genel Arama
+                <div class="card card-primary card-outline card-tabs nav-tabs-right">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist" id="navtop">
+                        <li class=" nav-item"><a  class="nav-link active" href="#genel" data-toggle="tab" aria-expanded="true">Genel Arama
                         </a></li>
-                        <li class=""><a href="#detay" data-toggle="tab" aria-expanded="false">Detaylı Arama
+                        <li class="nav-item"><a class="nav-link " href="#detay" data-toggle="tab" aria-expanded="false">Detaylı Arama
                         </a></li>
-
-                        <li class="pull-left header"><i class="fa fa-th"></i> Arama Alanı</li>
+{##}
+{#                        <li class="pull-left header"><i class="fa fa-th"></i> Arama Alanı</li>#}
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="genel">
@@ -230,16 +248,14 @@
                             </form>
                         </div>
                         <!-- /.tab-pane -->
-                        <div class="tab-pane" id="detay">
+                        <div class="tab-pane  " id="detay">
 
-                            <div class="nav-tabs-custom">
+                         <div class="col-lg-12">
+                         <div class="card-tabs">
+                                           <div class="card-header">
                                 <ul class="nav nav-tabs" id="navlower">
-                                    <li class="active"><a href="#birim" data-toggle="tab">Birim</a></li>
-                                    <li><a href="#klasor" data-toggle="tab">Klasor</a></li>
-                                    {#                                        <li><a href="#dosya" data-toggle="tab">Dosya</a></li>#}
-
-                                    <li class="pull-right"><a href="#genel" class="text-muted"><i
-                                            class="fa fa-gear"></i></a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#birim" data-toggle="tab">Birim</a></li>
+                                    <li class="nav-item"><a  class="nav-link" href="#klasor" data-toggle="tab">Klasor</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active height-control " id="birim">
@@ -347,8 +363,11 @@
                                 </div>
                                 <!-- /.tab-content -->
                             </div>
-                            <!-- nav-tabs-custom -->
+                         </div>
 
+
+                            <!-- nav-tabs-custom -->
+                         </div>
 
                         </div>
                         <!-- /.tab-pane -->

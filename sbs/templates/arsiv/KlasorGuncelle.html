@@ -93,29 +93,39 @@
 
 
     {% endif %}
-    <section class="content-header">
-        <h1>
-            Klasör Güncelle
-        </h1>
-        <ol class="breadcrumb">
 
-            <a href="{% url "sbs:klasor-ekle" %}?birim={{ klasor.birim.pk }}"
-               type="button" class="btn btn-success"><i
-                    class="fa fa-file"></i>Yeni Klasör Ekle
-            </a>
-
-            <button id="klasordelete"
-                    type="button" class="btn btn-danger"><i
-                    class="fa fa-trash"></i> Klasörü Sil
-            </button>
-        </ol>
-    </section>
     <section class="content">
+
+
+        <section class="content-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Klasör Güncelle </h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url "sbs:klasor-ekle" %}?birim={{ klasor.birim.pk }}"
+                                                       type="button" class="btn btn-success"><i
+                                class="fa fa-file"></i>Yeni Klasör Ekle
+                        </a></li>
+                        <li class="breadcrumb-item">
+                            <button id="klasordelete"
+                                    type="button" class="btn btn-danger"><i
+                                    class="fa fa-trash"></i> Klasörü Sil
+                            </button>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+
         <form method="post" role="form">
             {% csrf_token %}
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="card-body">
                     <div class="card card-primary">
                         <div class="card-header with-border">
                             <h3 class="card-title"> Klasör Güncelle </h3>
@@ -139,7 +149,7 @@
             <div class="row">
             <section class="col-lg-12 ">
                 <div class="card-body">
-                    <div class="card card-primary">
+                    <div class="card card-primary card-outline">
                         <div class="card-header with-border">
                             <h3 class="card-title">Dosyalar</h3>
                         </div>
