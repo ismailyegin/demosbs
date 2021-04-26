@@ -9,19 +9,14 @@
 
     {% load static %}
 
+    <link rel="shortcut icon" type="image/png" href="/demosbs/media/favicon.png"/>
+    {#    <!-- Theme style -->#}
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+    {#    <!-- iCheck -->#}
 
-    <link rel="shortcut icon" type="image/png" href="/media/favicon.png"/>
-
+    <!-- Google Font -->
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
-
-
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
 
@@ -70,15 +65,14 @@
 
 {% endif %}
 
-<div class="login-logo">
-    <span class="logo-lg"><img width="80%" src="/media/giris-logo.png" alt="User Image"
-                               style="margin-bottom: 5px;"> </span>
-</div>
 
-<div class="card">
 
-    <div class="card-body login-card-body">
-
+<div class="login-box">
+    <div class="login-logo">
+        <span class="logo-lg"><img width="80%" src="/demosbs/media/giris-logo.png" alt="User Image" style="margin-bottom: 5px;"> </span>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-card-body">
         <p class="login-card-msg">Hoşgeldiniz</p>
 
 
@@ -96,10 +90,6 @@
         {% endif %}
 
         </ul>
-
-
-
-
         <form action="" method="post">
 
 
@@ -118,57 +108,33 @@
 
 
             <div class="row">
+                <div class="col-xs-8">
 
-                <button type="submit" class="btn btn-primary pull-right ">Giriş Yap</button>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary ">Giriş Yap</button>
 
+                </div>
 
                 <!-- /.col -->
             </div>
         </form>
-
-        <div class="social-auth-links text-center mb-3">
-            <a type="button" href="{% url 'accounts:forgot' %} " class="text-center">Şifremi
-                Unuttum
-            </a>
-            <div class="dropdown">
-                <a class=" dropdown-toggle" type="button" data-toggle="dropdown">Kayıt
-                    Ol
-                    <span class="caret"></span></a>
-
-                <ul class="dropdown-menu">
+        {#        <a href="{% url 'accounts:forgot' %}" class="text-center">Şifremi Unuttum</a>#}
+        <a type="button" href="{% url 'accounts:forgot' %} " class="text-center">Şifremi
+            Unuttum
+        </a>
 
 
-                    <li><a href="{% url 'accounts:referee' %} ">Hakem</a></li>
-                    <li><a href="{% url 'accounts:coach' %} ">Antrenör</a></li>
-                    {#                <li><a href="{% url 'accounts:athlete' %} ">Sporcu</a></li>#}
-                    <!--                <li><a href="{% url 'accounts:pre-registration' %} ">Klüp Üyesi</a></li>-->
-                    {#      <li class="divider"></li>#}
-
-
-                </ul>
-            </div>
-        </div>
 
     </div>
-    <!-- /.login-card-body -->
+
+
 </div>
-</div>
-
-
--------------------------
-
-
 <div style="margin-top: 20px"><p style="text-align: center">Designed by <a href="http://www.kobiltek.com">KOBILTEK
     Informatics & Technology</a></p></div>
 <!-- /.login-card-body -->
 </div>
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-
-
 <!-- /.login-card -->
 </body>
 </html>
