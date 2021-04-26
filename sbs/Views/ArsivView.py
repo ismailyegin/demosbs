@@ -27,6 +27,8 @@ from sbs.models.Aevrak import Aevrak
 from sbs.models.Aklasor import Aklasor
 from sbs.models.CategoryItem import CategoryItem
 from sbs.services import general_methods
+
+
 @login_required
 def return_arsiv(request):
     perm = general_methods.control_access(request)
@@ -89,7 +91,7 @@ def arsiv_birim_add(request):
 
     category_item_form = AbirimForm()
     return render(request, 'arsiv/birimAdd.html',
-                  {'category_item_form': category_item_form,})
+                  {'category_item_form': category_item_form, })
 
 
 @login_required
@@ -124,11 +126,11 @@ def arsiv_birim_update(request, pk):
         if category_item_form.is_valid():
             category_item_form.save()
     categoryitem = AbirimParametre.objects.filter(birim=birim)
-    klasor=Aklasor.objects.filter(birim=birim)
+    klasor = Aklasor.objects.filter(birim=birim)
     return render(request, 'arsiv/birimGuncelle.html', {'category_item_form': category_item_form,
                                                         'categoryitem': categoryitem,
                                                         'birim': birim,
-                                                        'klasor':klasor})
+                                                        'klasor': klasor})
 
 
 @login_required
@@ -146,7 +148,6 @@ def arsiv_birimParametre(request, pk):
                                    type=category_item_form.cleaned_data['type']
                                    )
             test.save()
-
 
             return redirect('sbs:arsiv-birimUpdate', pk=abirim.pk)
 
@@ -166,7 +167,6 @@ def arsiv_birimParametreUpdate(request, pk):
         parametre = AbirimParametre.objects.none()
         category_item_form = AbirimparametreForm(request.POST or None)
 
-
     if request.method == 'POST':
         if category_item_form.is_valid():
             test = category_item_form.save()
@@ -181,22 +181,21 @@ def arsiv_birimListesi(request):
     if not perm:
         logout(request)
         return redirect('accounts:login')
-    birim_form=AbirimSearchForm()
-    birimler=Abirim.objects.none()
+    birim_form = AbirimSearchForm()
+    birimler = Abirim.objects.none()
     if request.method == 'POST':
-        name=request.POST.get('name')
+        name = request.POST.get('name')
         if not (name):
-            birimler=Abirim.objects.filter()
+            birimler = Abirim.objects.filter()
 
         else:
             query = Q()
             if name:
                 query &= Q(name__icontains=name)
-            birimler=Abirim.objects.filter(query)
-
+            birimler = Abirim.objects.filter(query)
 
     return render(request, 'arsiv/BirimList.html', {'birimler': birimler,
-                                                    'birim_form':birim_form})
+                                                    'birim_form': birim_form})
 
 
 @login_required
@@ -216,9 +215,6 @@ def parametredelete(request, pk):
             else:
                 return JsonResponse({'status': 'Fail', 'msg': 'id degeri yok'})
 
-
-
-
             return JsonResponse({'status': 'Success', 'messages': 'save successfully'})
         except CategoryItem.DoesNotExist:
             return JsonResponse({'status': 'Fail', 'msg': 'Object does not exist'})
@@ -233,13 +229,11 @@ def arsiv_klasorEkle(request):
         logout(request)
         return redirect('accounts:login')
 
-
     if request.GET.get('birim'):
         if Abirim.objects.filter(pk=request.GET.get('birim')):
-            form=AklasorForm(initial = {'birim': Abirim.objects.get(pk=request.GET.get('birim'))})
+            form = AklasorForm(initial={'birim': Abirim.objects.get(pk=request.GET.get('birim'))})
     else:
         form = AklasorForm()
-
 
     if request.method == 'POST':
         form = AklasorForm(request.POST)
@@ -258,14 +252,14 @@ def arsiv_klasorler(request):
         logout(request)
         return redirect('accounts:login')
     klasor = Aklasor.objects.none()
-    klasor_form=AklasorSearchForm()
+    klasor_form = AklasorSearchForm()
     if request.method == 'POST':
-        name=request.POST.get('name')
+        name = request.POST.get('name')
         sirano = request.POST.get('sirano')
         location = request.POST.get('location')
         birim = request.POST.get('birim')
         if not (name or sirano or location or birim):
-            klasor=Aklasor.objects.all()
+            klasor = Aklasor.objects.all()
         else:
             query = Q()
             if name:
@@ -273,12 +267,10 @@ def arsiv_klasorler(request):
             if sirano:
                 query &= Q(sirano=sirano)
             if location:
-                query &= Q(location__pk=int (location))
+                query &= Q(location__pk=int(location))
             if birim:
-                query &= Q(birim__pk=int (birim))
-            klasor=Aklasor.objects.filter(query)
-
-
+                query &= Q(birim__pk=int(birim))
+            klasor = Aklasor.objects.filter(query)
 
     #
     # for item in klasor:
@@ -298,7 +290,9 @@ def arsiv_klasorler(request):
     #         return redirect('sbs:arsiv-birimEkle')
 
     return render(request, 'arsiv/KlasorListesi.html', {'klasor': klasor,
-                                                        'klasor_form':klasor_form})
+                                                        'klasor_form': klasor_form})
+
+
 @login_required
 def arsiv_klasorUpdate(request, pk):
     perm = general_methods.control_access(request)
@@ -313,6 +307,8 @@ def arsiv_klasorUpdate(request, pk):
             test = klasor_form.save()
             test.save()
     return render(request, 'arsiv/KlasorGuncelle.html', {'form': klasor_form, 'dosya': dosya, 'klasor': klasor})
+
+
 def arsiv_dosyaEkle(request, pk):
     perm = general_methods.control_access(request)
     if not perm:
@@ -323,11 +319,12 @@ def arsiv_dosyaEkle(request, pk):
     form = AdosyaForm(pk)
     if request.method == 'POST':
 
-        form = AdosyaForm(pk,request.POST)
+        form = AdosyaForm(pk, request.POST)
         if form.is_valid():
-            pk=form.save(pk)
-            return redirect('sbs:dosya-guncelle',pk)
+            pk = form.save(pk)
+            return redirect('sbs:dosya-guncelle', pk)
     return render(request, 'arsiv/DosyaEkle.html', {'form': form})
+
 
 @login_required
 def arsiv_dosyaUpdate(request, pk):
@@ -336,16 +333,16 @@ def arsiv_dosyaUpdate(request, pk):
         logout(request)
         return redirect('accounts:login')
     dosya = Adosya.objects.get(pk=pk)
-    form = AdosyaForm(dosya.klasor.pk,request.POST or None, instance=dosya)
-    dosyaparametre=AdosyaParametre.objects.filter(dosya=dosya)
+    form = AdosyaForm(dosya.klasor.pk, request.POST or None, instance=dosya)
+    dosyaparametre = AdosyaParametre.objects.filter(dosya=dosya)
     for item in dosyaparametre:
         form.fields[item.parametre.title].initial = item.value
 
     files = Aevrak.objects.filter(adosya=dosya)
-    evraklist=[]
+    evraklist = []
     for item in files:
         # print(item.file.name)
-        if item.file.name.split(".")[len(item.file.name.split("."))-1]== "pdf":
+        if item.file.name.split(".")[len(item.file.name.split(".")) - 1] == "pdf":
             evraklist.append(item)
     if request.method == 'POST':
         if request.FILES.get('file'):
@@ -372,7 +369,9 @@ def arsiv_dosyaUpdate(request, pk):
                 dosyaParametre.parametre = item
                 dosyaParametre.save()
         dosya.save()
-    return render(request, 'arsiv/DosyaGuncelle.html', {'form': form, 'dosya': dosya, 'files': files ,'evraklist':evraklist})
+    return render(request, 'arsiv/DosyaGuncelle.html',
+                  {'form': form, 'dosya': dosya, 'files': files, 'evraklist': evraklist})
+
 
 @login_required
 def arsiv_evrakEkle(request, pk):
@@ -398,6 +397,7 @@ def arsiv_evrakEkle(request, pk):
                   {'form': form, }
                   )
 
+
 @login_required
 def arsiv_evrakDelete(request, pk):
     perm = general_methods.control_access(request)
@@ -408,6 +408,8 @@ def arsiv_evrakDelete(request, pk):
     dosya = Adosya.objects.filter(evrak=evrak)[0]
     evrak.delete()
     return redirect('sbs:dosya-guncelle', dosya.pk)
+
+
 @login_required
 def arsiv_anasayfa(request):
     perm = general_methods.control_access(request)
@@ -415,41 +417,44 @@ def arsiv_anasayfa(request):
         logout(request)
         return redirect('accounts:login')
 
-    data=[]
-    oran=[]
-    units_count=Abirim.objects.count()
-    klasor_count=Aklasor.objects.count()
-    dosyalar_count=Adosya.objects.count()
-    evrak_count=Aevrak.objects.count()
+    data = []
+    oran = []
+    units_count = Abirim.objects.count()
+    klasor_count = Aklasor.objects.count()
+    dosyalar_count = Adosya.objects.count()
+    evrak_count = Aevrak.objects.count()
     # öz yinelemeli hale gelecek
-    beka=[]
-    birimler=Abirim.objects.distinct()
+    beka = []
+    birimler = Abirim.objects.distinct()
     for birim in birimler:
         sayi = 0
-        klasorler=Aklasor.objects.filter(birim=birim)
+        klasorler = Aklasor.objects.filter(birim=birim)
         for klasor in klasorler:
-            dosyalar=Adosya.objects.filter(klasor=klasor)
+            dosyalar = Adosya.objects.filter(klasor=klasor)
             for dosya in dosyalar:
                 sayi += int(dosya.evrak.count())
-        beka.append((birim.name,sayi))
+        beka.append((birim.name, sayi))
+
     def takeSecond(elem):
         return elem[1]
+
     beka.sort(key=takeSecond, reverse=True)
     for item in beka[:6]:
-        data.append({'sayi':item[1],'birim':item[0]})
-        oran.append({'oran':round((item[1]/beka[0][1])*100)})
-
+        data.append({'sayi': item[1], 'birim': item[0]})
+        oran.append({'oran': round((item[1] / beka[0][1]) * 100)})
 
     return render(request, "arsiv/arsivAnasayfa.html",
                   {'units_count': units_count,
-                   'klasor_count':klasor_count,
-                   'dosyalar_count':dosyalar_count,
-                   'evrak_count':evrak_count,
-                   'data':data,
-                   'oran':oran,
+                   'klasor_count': klasor_count,
+                   'dosyalar_count': dosyalar_count,
+                   'evrak_count': evrak_count,
+                   'data': data,
+                   'oran': oran,
 
                    }
                   )
+
+
 @login_required
 def parametre(request):
     perm = general_methods.control_access(request)
@@ -479,8 +484,6 @@ def parametre(request):
             return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
 
-
-
 def birimGeneralSearch(request):
     dosya = Adosya.objects.none()
     units = Abirim.objects.none()
@@ -488,7 +491,7 @@ def birimGeneralSearch(request):
 
     if request.method == 'POST':
         if request.POST.get('search'):
-            search= unicode_tr(request.POST.get('search')).upper()
+            search = unicode_tr(request.POST.get('search')).upper()
             units |= Abirim.objects.filter(name__icontains=search)
 
             klasor |= Aklasor.objects.filter(name__icontains=search)
@@ -517,7 +520,6 @@ def birimGeneralSearch(request):
                   })
 
 
-
 def birimsearch(request):
     birimler = []
     categori = Abirim.objects.all()
@@ -531,32 +533,31 @@ def birimsearch(request):
             'parametre': parametre
         }
         birimler.append(beka)
-    test=[]
-    dosya=Adosya.objects.none()
-    birimdizi=[]
+    test = []
+    dosya = Adosya.objects.none()
+    birimdizi = []
 
-    units=Abirim.objects.none()
-    klasor=Aklasor.objects.none()
+    units = Abirim.objects.none()
+    klasor = Aklasor.objects.none()
 
     if request.method == 'POST':
         if request.POST.get('birim_id'):
-            birimparametre=AbirimParametre.objects.filter(birim__id=int(request.POST.get('birim_id')))
+            birimparametre = AbirimParametre.objects.filter(birim__id=int(request.POST.get('birim_id')))
             for item in birimparametre:
                 if request.POST.get(item.title):
                     # print(request.POST.get(item.title))
                     dosyaParametre = AdosyaParametre.objects.filter(value__icontains=request.POST.get(item.title))
                     for item in dosyaParametre:
                         dosya |= Adosya.objects.filter(pk=int(item.dosya.pk))
-                        klasor |=Aklasor.objects.filter(pk=item.dosya.klasor.pk)
+                        klasor |= Aklasor.objects.filter(pk=item.dosya.klasor.pk)
                         units |= Abirim.objects.filter(pk=item.dosya.klasor.birim.pk)
     return render(request, "arsiv/BirimSearch.html",
                   {
-                      'birimler':birimler,
+                      'birimler': birimler,
                       'units': units.distinct(),
                       'klasor': klasor.distinct(),
                       'files': dosya.distinct()
-                   })
-
+                  })
 
 
 def arsiv_dosyalar(request):
@@ -566,8 +567,8 @@ def arsiv_dosyalar(request):
         return redirect('accounts:login')
 
     dosya = Adosya.objects.none()
-    dosya_form=AdosyaFormSearch()
-    klasor_form=AklasorSearchForm()
+    dosya_form = AdosyaFormSearch()
+    klasor_form = AklasorSearchForm()
 
     if request.method == 'POST':
         sirano = request.POST.get('sirano')
@@ -575,7 +576,7 @@ def arsiv_dosyalar(request):
         birim = request.POST.get('birim')
         klasor = request.POST.get('klasor')
         if not (klasor or sirano or location or birim):
-            dosya=Adosya.objects.all()
+            dosya = Adosya.objects.all()
         else:
             query = Q()
             if klasor:
@@ -586,26 +587,23 @@ def arsiv_dosyalar(request):
                 query &= Q(klasor__location__pk=location)
             if birim:
                 query &= Q(klasor__birim__pk=birim)
-            dosya=Adosya.objects.filter(query)
+            dosya = Adosya.objects.filter(query)
 
     return render(request, 'arsiv/DosyaListesi.html', {'dosya': dosya,
-                                      'klasor_form':klasor_form,
-                                       'dosya_form': dosya_form
-                                      })
-
-
+                                                       'klasor_form': klasor_form,
+                                                       'dosya_form': dosya_form
+                                                       })
 
 
 def birimSearch(request):
     dosya = Adosya.objects.none()
     units = Abirim.objects.none()
     klasor = Aklasor.objects.none()
-    klasor_form=AklasorSearchForm()
+    klasor_form = AklasorSearchForm()
 
-
-    dosyadizi=[]
-    backdata=None
-    backsearch=None
+    dosyadizi = []
+    backdata = None
+    backsearch = None
 
     if request.method == 'POST':
         name = request.POST.get('klasorname')
@@ -613,12 +611,11 @@ def birimSearch(request):
         location = request.POST.get('klasorlocation')
         birim = request.POST.get('klasorbirim')
 
-
         # genel arama alani
         if request.POST.get('search'):
             search = unicode_tr(request.POST.get('search')).upper()
-            backdata =search
-            backsearch="genelArama"
+            backdata = search
+            backsearch = "genelArama"
             # print('genel arama ')
             units |= Abirim.objects.filter(name__icontains=search)
             klasor |= Aklasor.objects.filter(name__icontains=search)
@@ -642,7 +639,7 @@ def birimSearch(request):
                     beka = {
                         'pk': item.dosya.pk,
                         'sirano': item.dosya.sirano,
-                        'parametre': search+'/'+item.parametre.title,
+                        'parametre': search + '/' + item.parametre.title,
                         'klasor_id': item.dosya.klasor.pk
                     }
                     dosyadizi.append(beka)
@@ -656,17 +653,17 @@ def birimSearch(request):
         elif request.POST.get('searchbirim'):
             # print('birim arama ')
 
-            units =Abirim.objects.filter(pk=request.POST.get('searchbirim'))
-            backdata=Abirim.objects.get(pk=request.POST.get('searchbirim')).pk
-            backsearch="birimArama"
+            units = Abirim.objects.filter(pk=request.POST.get('searchbirim'))
+            backdata = Abirim.objects.get(pk=request.POST.get('searchbirim')).pk
+            backsearch = "birimArama"
             birimparametre = AbirimParametre.objects.filter(birim__id=int(request.POST.get('searchbirim')))
             if birimparametre:
                 for item in birimparametre:
                     if request.POST.get(item.title):
                         # print(request.POST.get(item.title))
 
-
-                        dosyaParametre = AdosyaParametre.objects.filter(value__icontains=unicode_tr(request.POST.get(item.title)).upper())
+                        dosyaParametre = AdosyaParametre.objects.filter(
+                            value__icontains=unicode_tr(request.POST.get(item.title)).upper())
                         for dosyapara in dosyaParametre:
                             dosya |= Adosya.objects.filter(pk=int(dosyapara.dosya.pk))
                             klasor |= Aklasor.objects.filter(pk=dosyapara.dosya.klasor.pk)
@@ -674,22 +671,22 @@ def birimSearch(request):
                             beka = {
                                 'pk': dosyapara.dosya.pk,
                                 'sirano': dosyapara.dosya.sirano,
-                                'parametre':unicode_tr(request.POST.get(item.title)).upper()+'/'+dosyapara.parametre.title,
+                                'parametre': unicode_tr(
+                                    request.POST.get(item.title)).upper() + '/' + dosyapara.parametre.title,
                                 'klasor_id': dosyapara.dosya.klasor.pk
                             }
                             dosyadizi.append(beka)
 
             if not (klasor):
-                klasor=Aklasor.objects.filter(birim=Abirim.objects.get(pk=request.POST.get('searchbirim')))
-                dosya=Adosya.objects.filter(klasor__birim__pk=request.POST.get('searchbirim'))
+                klasor = Aklasor.objects.filter(birim=Abirim.objects.get(pk=request.POST.get('searchbirim')))
+                dosya = Adosya.objects.filter(klasor__birim__pk=request.POST.get('searchbirim'))
 
         # klasör arama alani
 
         elif (name or sirano or location or birim):
 
-
-            backdata =name+"/"+sirano+"/"+location+"/"+birim
-            backsearch="searchKlasor"
+            backdata = name + "/" + sirano + "/" + location + "/" + birim
+            backsearch = "searchKlasor"
             # print('klasor  arama ')
             query = Q()
             if name:
@@ -709,7 +706,6 @@ def birimSearch(request):
             units = Abirim.objects.all()
             klasor = Aklasor.objects.all()
 
-
     if len(dosyadizi) == 0:
         for item in dosya.distinct():
             if AdosyaParametre.objects.filter(dosya=item):
@@ -726,11 +722,13 @@ def birimSearch(request):
                       'units': units.distinct(),
                       'klasor': klasor.distinct(),
                       'files': dosyadizi,
-                      'klasor_form':klasor_form,
-                      'backdata':backdata,
-                      'backsearch':backsearch,
+                      'klasor_form': klasor_form,
+                      'backdata': backdata,
+                      'backsearch': backsearch,
 
                   })
+
+
 @login_required
 def zipfile(request, pk):
     perm = general_methods.control_access(request)
@@ -738,7 +736,7 @@ def zipfile(request, pk):
     if not perm:
         logout(request)
         return redirect('accounts:login')
-    dosya=Adosya.objects.get(pk=pk)
+    dosya = Adosya.objects.get(pk=pk)
     files = Aevrak.objects.filter(adosya=dosya)
     evraklist = []
 
@@ -749,7 +747,7 @@ def zipfile(request, pk):
 
         # Files (local path) to put in the .zip
         # FIXME: Change this (get paths from DB etc)
-    filenames =evraklist
+    filenames = evraklist
 
     # Folder name in ZIP archive which contains the above files
     # E.g [thearchive.zip]/somefiles/file2.txt
@@ -795,8 +793,6 @@ def zipfile(request, pk):
     #     return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
 
-
-
 @login_required
 def arsiv_evrakDelete_ajax(request, pk):
     perm = general_methods.control_access(request)
@@ -831,15 +827,12 @@ def arsiv_klasor_delete(request, pk):
 
         try:
 
-
             return JsonResponse({'status': 'Success', 'messages': 'save successfully'})
         except CategoryItem.DoesNotExist:
             return JsonResponse({'status': 'Fail', 'msg': 'Object does not exist'})
 
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
-
-
 
 
 @login_required
@@ -854,7 +847,6 @@ def arsiv_dosya_delete(request, pk):
         dosya.delete()
 
         try:
-
 
             return JsonResponse({'status': 'Success', 'messages': 'save successfully'})
         except CategoryItem.DoesNotExist:
@@ -871,8 +863,8 @@ def arsiv_dosyaEkle_full(request):
         return redirect('accounts:login')
 
     units = Abirim.objects.all()
-    unit_form=AbirimForm()
-    klasor_form=AklasorForm()
+    unit_form = AbirimForm()
+    klasor_form = AklasorForm()
 
     if request.method == 'POST':
         if request.POST.get("modaldosyaaddklasor"):
@@ -914,17 +906,16 @@ def arsiv_dosyaEkle_full(request):
                         dosya.save()
                 return redirect('sbs:dosya-guncelle', pk=dosya.pk)
 
-
-
     return render(request, 'arsiv/EvrakEkleSec.html', {
         'units': units,
-        'unit_form':unit_form,
-        'klasor_form':klasor_form,
+        'unit_form': unit_form,
+        'klasor_form': klasor_form,
 
     })
+
+
 @login_required
 def ajax_klasor(request):
-
     try:
         if request.method == 'POST':
             klasor = Aklasor.objects.filter(birim__pk=request.POST.get('cmd'))
@@ -944,9 +935,9 @@ def ajax_klasor(request):
     except:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
+
 @login_required
 def ajax_klasor_update(request):
-
     try:
         if request.method == 'POST':
             if request.POST.get('pk'):
@@ -955,10 +946,12 @@ def ajax_klasor_update(request):
                     return JsonResponse(
                         {
                             'pk': klasor.pk,
-                            'location':klasor.location.pk,
-                            'birim':klasor.birim.pk,
-                            'name':klasor.name,
-                            'sirano':klasor.sirano,
+                            'location': klasor.location.pk,
+                            'birim': klasor.birim.pk,
+                            'name': klasor.name,
+                            'sirano': klasor.sirano,
+                            'finish':klasor.finishyear,
+                             'start':klasor.startyear,
                             'status': 'Success',
                             'msg': 'Valid is  request'
 
@@ -971,31 +964,37 @@ def ajax_klasor_update(request):
     except:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
+
 @login_required
 def ajax_klasor_update_add(request):
-
     try:
         if request.method == 'POST':
             if request.POST.get('pk'):
                 if Aklasor.objects.filter(pk=request.POST.get('pk')):
                     klasor = Aklasor.objects.get(pk=request.POST.get('pk'))
                     if request.POST.get('name'):
-                        klasor.name=request.POST.get('name')
+                        klasor.name = request.POST.get('name')
                     if request.POST.get('sirano'):
                         klasor.sirano = request.POST.get('sirano')
                     if request.POST.get('location'):
                         klasor.location_id = request.POST.get('location')
                     if request.POST.get('birim'):
                         klasor.birim_id = request.POST.get('birim')
-                    klasor.save()
+                    if  request.POST.get('finish'):
+                        klasor.finishyear=request.POST.get('finish')
+                    if request.POST.get('start'):
+                        klasor.startyear=request.POST.get('start')
 
+                    klasor.save()
 
                     return JsonResponse(
                         {
                             'pk': klasor.pk,
-                            'name':klasor.name,
-                            'birimpk':klasor.birim.pk,
-                            'birimname':klasor.birim.name,
+                            'name': klasor.name,
+                            'birimpk': klasor.birim.pk,
+                            'birimname': klasor.birim.name,
+                             'finish':klasor.finishyear,
+                             'start':klasor.startyear,
                             'status': 'Success',
                             'msg': 'İşlem Başari ile gerçekleşti'
 
@@ -1007,6 +1006,7 @@ def ajax_klasor_update_add(request):
 
     except:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
+
 
 @login_required
 def ajax_dosya(request):
@@ -1044,16 +1044,17 @@ def ajax_dosyaform(request):
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
+
 @login_required
 def ajax_dosyaform_update(request):
     if request.POST.get('dosya'):
         if Adosya.objects.filter(pk=int(request.POST.get('dosya'))):
-            dosya=Adosya.objects.get(pk=int(request.POST.get('dosya')))
-            form =AdosyaForm(dosya.klasor.pk,instance=dosya)
+            dosya = Adosya.objects.get(pk=int(request.POST.get('dosya')))
+            form = AdosyaForm(dosya.klasor.pk, instance=dosya)
             dosyaparametre = AdosyaParametre.objects.filter(dosya=dosya)
             for item in dosyaparametre:
                 form.fields[item.parametre.title].initial = item.value
-            data=str(form)
+            data = str(form)
             return JsonResponse(
                 {
                     'data': data,
@@ -1067,10 +1068,11 @@ def ajax_dosyaform_update(request):
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
+
 @login_required
 def ajax_birimAdd(request):
     if request.POST.get('cmd'):
-        birim=Abirim(name=request.POST.get('cmd'))
+        birim = Abirim(name=request.POST.get('cmd'))
         birim.save()
         return JsonResponse(
             {
@@ -1084,7 +1086,6 @@ def ajax_birimAdd(request):
 
 @login_required
 def ajax_birimUpdateParametre(request):
-
     if request.method == 'POST':
         if Abirim.objects.get(pk=request.POST.get('pk')):
             birim = Abirim.objects.get(pk=request.POST.get('pk'))
@@ -1108,12 +1109,11 @@ def ajax_birimUpdateParametre(request):
     return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
 
-
 @login_required
 def ajax_birimUpdateParametreAdd(request):
-    if request.POST.get('type') and request.POST.get('title') and request.POST.get('birim') :
+    if request.POST.get('type') and request.POST.get('title') and request.POST.get('birim'):
 
-        parametre=AbirimParametre(
+        parametre = AbirimParametre(
             title=request.POST.get('title'),
             type=request.POST.get('type'),
             birim=Abirim.objects.get(pk=int(request.POST.get('birim')))
@@ -1123,7 +1123,7 @@ def ajax_birimUpdateParametreAdd(request):
         return JsonResponse(
             {
                 'pk': parametre.pk,
-                'title':parametre.title,
+                'title': parametre.title,
                 'status': 'Success',
                 'msg': 'Valid is  request'
             })
@@ -1139,18 +1139,17 @@ def ajax_birimUpdateParametreAdd(request):
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
 
-
 @login_required
 def ajax_birimUpdate(request):
     if request.POST.get('pk') and request.POST.get('name'):
         if Abirim.objects.filter(pk=int(request.POST.get('pk'))):
             birim = Abirim.objects.get(pk=int(request.POST.get('pk')))
-            birim.name=request.POST.get('name')
+            birim.name = request.POST.get('name')
             birim.save()
             return JsonResponse(
                 {
-                    'pk':birim.pk,
-                    'name':birim.name,
+                    'pk': birim.pk,
+                    'name': birim.name,
                     'status': 'Success',
                     'msg': 'Valid is  request'
                 })
@@ -1163,14 +1162,18 @@ def ajax_birimUpdate(request):
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
+
 @login_required
 def ajax_klasorAdd(request):
-    if request.POST.get('name')  and request.POST.get('sirano')  and request.POST.get('location')  and request.POST.get('birim') :
-        klasor=Aklasor(name=request.POST.get('name'),
-                      sirano=int(request.POST.get('sirano')),
-                      location_id=int(request.POST.get('location')),
-                      birim_id=int(request.POST.get('birim')),
-                      )
+    if request.POST.get('name') and request.POST.get('sirano') and request.POST.get('location') and request.POST.get(
+            'birim'):
+        klasor = Aklasor(name=request.POST.get('name'),
+                         sirano=int(request.POST.get('sirano')),
+                         location_id=int(request.POST.get('location')),
+                         birim_id=int(request.POST.get('birim')),
+                         startyear=int(request.POST.get('finish')),
+                         finishyear=int(request.POST.get('start')),
+                         )
         klasor.save()
         return JsonResponse(
             {

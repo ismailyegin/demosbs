@@ -14,7 +14,7 @@ class CategoryItem(models.Model):
     isFirst = models.BooleanField(null=True, blank=True)
     creationDate = models.DateTimeField(auto_now_add=True)
     operationDate = models.DateTimeField(auto_now=True)
-    kobilid=models.IntegerField(null=False,blank=False)
+    kobilid=models.IntegerField(null=True,blank=True)
 
     def locationSet(self, location, deger):
         deger =  str(location.name)+"/"+deger

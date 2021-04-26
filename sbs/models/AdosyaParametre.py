@@ -11,7 +11,7 @@ class AdosyaParametre(models.Model):
     value = models.CharField(max_length=120, null=True, blank=True, verbose_name='value')
     dosya = models.ForeignKey(Adosya, on_delete=models.CASCADE,null=False, blank=False)
     parametre=models.ForeignKey(AbirimParametre,on_delete=models.CASCADE,null=True, blank=True)
-    kobilid=models.IntegerField(null=False,blank=False)
+    kobilid=models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return '%s' % (self.value)

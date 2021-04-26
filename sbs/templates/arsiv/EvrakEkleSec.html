@@ -4,13 +4,13 @@
 
 
 
-{#    message modal#}
+    {#    message modal#}
     <div class="modal fade" id="modelMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                     <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,11 +81,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                     <h3 class="modal-title">Birim Ekle</h3>
+                    <h3 class="modal-title">Birim Ekle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
 
 
                 </div>
@@ -111,11 +110,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                       <h3 class="modal-title">Klasör Ekle</h3>
+                    <h3 class="modal-title">Klasör Ekle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
 
 
                 </div>
@@ -139,11 +137,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                      <h3 class="modal-title">Dosya Ekle</h3>
+                    <h3 class="modal-title">Dosya Ekle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
 
 
                 </div>
@@ -183,7 +180,7 @@
 
                 <div class="modal-header">
 
-                     <h3 class="modal-title">Birim Güncelle</h3>
+                    <h3 class="modal-title">Birim Güncelle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -194,11 +191,14 @@
                 <div class="modal-body card-tabs">
 
 
-                                            <div class="card-header">
+                    <div class="card-header">
                         <ul class="nav nav-tabs pull-right" id="navul">
-                            <li class="nav-item" id="navguncelle"><a class="nav-link active" href="#tab_1-1" data-toggle="tab">Güncelle </a></li>
-                            <li class="nav-item" id="navparamerte"><a class="nav-link" href="#tab_2-2" data-toggle="tab">Parametreler</a></li>
-                            <li class="nav-item" id="navparametreekle"><a class="nav-link"  href="#tab_3-2" data-toggle="tab">Parametre Ekle</a></li>
+                            <li class="nav-item" id="navguncelle"><a class="nav-link active" href="#tab_1-1"
+                                                                     data-toggle="tab">Güncelle </a></li>
+                            <li class="nav-item" id="navparamerte"><a class="nav-link" href="#tab_2-2"
+                                                                      data-toggle="tab">Parametreler</a></li>
+                            <li class="nav-item" id="navparametreekle"><a class="nav-link" href="#tab_3-2"
+                                                                          data-toggle="tab">Parametre Ekle</a></li>
 
                         </ul>
                         <div class="tab-content">
@@ -276,8 +276,6 @@
                     <!-- nav-tabs-custom -->
 
 
-
-
                 </div>
 
 
@@ -291,11 +289,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                     <h3 class="modal-title">Klasör Güncelle</h3>
+                    <h3 class="modal-title">Klasör Güncelle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
 
 
                 </div>
@@ -303,17 +300,22 @@
                     <div class="col-lg-12">
 
 
-                        <label for="id_name">Tanımı:</label><input type="text" name="klasorupdatename" maxlength="120"
-                                                                   class="form-control" required=""
-                                                                   id="klasorupdateid_name">
-                        <label for="id_sirano">Sıra Numarası:</label><input type="number" name="klasorupdatesirano"
-                                                                            class="form-control" required=""
-                                                                            id="klasorupdateid_sirano">
-                        <label for="id_location">Konumu:</label><select name="klasorupdatelocation" class="form-control"
-                                                                        id="klasorupdateid_location">
+                        <label for="klasorupdateid_name">Tanımı:</label><input type="text" name="klasorupdatename"
+                                                                               maxlength="120"
+                                                                               class="form-control" required=""
+                                                                               id="klasorupdateid_name">
+                        <label for="klasorupdateid_sirano">Sıra Numarası:</label><input type="number"
+                                                                                        name="klasorupdatesirano"
+                                                                                        class="form-control" required=""
+                                                                                        id="klasorupdateid_sirano">
+                        <label for="klasorupdatelocation">Konumu:</label><select name="klasorupdatelocation"
+                                                                                 class="form-control"
+                                                                                 id="klasorupdateid_location">
+
                         {% for item in klasor_form.location %}
                             {{ item }}
                         {% endfor %}
+
 
                     </select>
                         <label for="id_birim">Birim:</label><select name="klasorupdatebirim" class="form-control"
@@ -324,6 +326,13 @@
 
 
                     </select>
+
+                        <label for="klasorupdateid_startyear">Startyear:</label>
+                        <input type="number" name="startyear" class="form-control dateyear"
+                               id="klasorupdateid_startyear">
+                        <label for="klasorupdateid_finishyear">Finishyear:</label>
+                        <input type="number" name="finishyear" class="form-control dateyear"
+                               id="klasorupdateid_finishyear">
 
 
                     </div>
@@ -342,7 +351,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                     <h3 class="modal-title">Dosya Güncelle</h3>
+                    <h3 class="modal-title">Dosya Güncelle</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -671,6 +680,8 @@
                                     sirano: $("#id_sirano").val(),
                                     location: $("#id_location").val(),
                                     birim: $("#id_birim").val(),
+                                    finish: $("#id_startyear").val(),
+                                    start: $("#id_finishyear").val(),
                                 },
                                 success: function (result) {
                                     console.log(result.status);
@@ -748,7 +759,7 @@
         {#birim güncelleme  alani#}
         $("#btnbirimincele").click(function () {
 
-           birimupdate();
+            birimupdate();
 
         });
         {#klasör güncelleme alani#}
@@ -774,6 +785,10 @@
                                 $("#klasorupdateid_sirano").val(result.sirano);
                                 $("#klasorupdateid_location").val(result.location);
                                 $("#klasorupdateid_birim").val(result.birim);
+                                $("#klasorupdateid_finishyear").val(result.finish);
+                                $("#klasorupdateid_startyear").val(result.start);
+
+
                             }
                         }
                     });
@@ -795,7 +810,8 @@
                                     location: $("#klasorupdateid_location").val(),
                                     birim: $("#klasorupdateid_birim").val(),
                                     pk: $("#klasor_id").val(),
-
+                                    finish: $("#klasorupdateid_finishyear").val(),
+                                    start: $("#klasorupdateid_startyear").val()
                                 },
                                 success: function (result) {
                                     console.log(result.status);
@@ -949,9 +965,9 @@
             }).modal('show');
         }
 
-    function birimupdate() {
+        function birimupdate() {
 
-             if ($("#birim_id").val() != "") {
+            if ($("#birim_id").val() != "") {
 
 
                 datatablesAdd();
@@ -1039,7 +1055,7 @@
                 }).modal('show');
             }
 
-    }
+        }
 
     </script>
 

@@ -6,7 +6,7 @@ class Abirim(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True, verbose_name='İsim')
     creationDate = models.DateTimeField(auto_now_add=True)
     operationDate = models.DateTimeField(auto_now=True)
-    kobilid=models.IntegerField(null=False,blank=False)
+    kobilid=models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return '%s' % (self.name)

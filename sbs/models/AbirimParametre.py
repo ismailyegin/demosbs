@@ -21,7 +21,7 @@ class AbirimParametre(models.Model):
     title = models.CharField(max_length=120,  null=True, blank=True, verbose_name='Başlık')
     type = models.CharField(max_length=128, verbose_name='Türü ', choices=Type,default=aString)
     birim = models.ForeignKey(Abirim, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Birim')
-    kobilid=models.IntegerField(null=False,blank=False)
+    kobilid=models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return '%s' % (self.title)
