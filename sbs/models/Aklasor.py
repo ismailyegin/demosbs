@@ -12,6 +12,10 @@ class Aklasor(models.Model):
     sirano = models.IntegerField(null=False, blank=False,verbose_name='Sıra Numarası')
     location = models.ForeignKey(CategoryItem, on_delete=models.SET_NULL,null=True, blank=True,verbose_name='Konumu')
     birim = models.ForeignKey(Abirim, on_delete=models.CASCADE,null=True, blank=True,verbose_name='Birim')
+    startyear = models.IntegerField(null=True, blank=True, verbose_name='startyear')
+    finishyear=models.IntegerField(null=True, blank=True, verbose_name='finishyear')
+
+
 
     def __str__(self):
         return '%s ' % self.name

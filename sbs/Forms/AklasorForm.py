@@ -13,7 +13,11 @@ class AklasorForm(ModelForm):
         super(AklasorForm,self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+        self.fields['finishyear'].widget.attrs['class'] = 'form-control dateyear'
+        self.fields['startyear'].widget.attrs['class'] = 'form-control dateyear'
+
         self.fields['location'].queryset=CategoryItem.objects.filter(forWhichClazz="location")
+
 
 
 
