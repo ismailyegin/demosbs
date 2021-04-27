@@ -8,10 +8,10 @@ from sbs.models import Menu, MenuAdmin, MenuAthlete, MenuReferee, MenuCoach, Men
     SportClubUser, Person, Athlete, Coach, Judge, DirectoryMember, SportsClub, Communication, City, Country, ClubRole
 from sbs.models.ActiveGroup import ActiveGroup
 from sbs.models.Logs import Logs
+from sbs.models.MenuArsiv import MenuArsiv
 from sbs.models.PreRegistration import PreRegistration
 from sbs.models.ReferenceCoach import ReferenceCoach
 from sbs.models.ReferenceReferee import ReferenceReferee
-from sbs.models.MenuArsiv import MenuArsiv
 
 
 def get_client_ip(request):
@@ -201,6 +201,10 @@ def getProfileImage(request):
         current_user = request.user
 
         if current_user.groups.filter(name='Admin').exists():
+            person = dict()
+            person['profileImage'] = "profile/logo.png"
+
+        if current_user.groups.filter(name='Arsiv').exists():
             person = dict()
             person['profileImage'] = "profile/logo.png"
 

@@ -34,21 +34,21 @@ def updateProfile(request):
     user = request.user
     user_form = DisabledUserForm(request.POST or None, instance=user)
     password_form = SetPasswordForm(request.user, request.POST)
-
     if request.method == 'POST':
-
         if password_form.is_valid():
-
             user.set_password(password_form.cleaned_data['new_password1'])
             user.save()
             update_session_auth_hash(request, user)
             messages.success(request, 'Şifre Başarıyla Güncellenmiştir.')
-
-            log = str(user.get_full_name()) + " admin sifre guncellendi"
-            log = general_methods.logwrite(request, request.user, log)
-
-            return redirect('sbs:admin-profil-guncelle')
-
+            aktif = general_methods.controlGroup(request)
+            if aktif == "Admin":
+                log = str(user.get_full_name()) + " admin sifre guncellendi"
+                log = general_methods.logwrite(request, request.user, log)
+                return redirect('sbs:admin-profil-guncelle')
+            elif aktif == "Arsiv":
+                log = str(user.get_full_name()) + " arsiv yönetici sifre guncellendi"
+                log = general_methods.logwrite(request, request.user, log)
+                return redirect('sbs:evrak-anasayfa')
         else:
 
             messages.warning(request, 'Alanları Kontrol Ediniz')

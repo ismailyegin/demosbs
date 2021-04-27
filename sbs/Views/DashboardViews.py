@@ -551,5 +551,7 @@ def activeGroup(request, pk):
         return redirect('sbs:sporcu')
     elif group.name == 'Yonetim':
         return redirect('sbs:federasyon')
+    elif group.name == 'Arsiv':
+        return redirect('sbs:evrak-anasayfa')
     else:
         return {}
