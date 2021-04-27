@@ -412,8 +412,14 @@
 
                                             <tr data-widget="expandable-table" aria-expanded="true">
                                                 <td>
-                                                    <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                                   {{ unit.name }}
+                                                    <button type="button" class="btn btn-primary p-0">
+                                                        <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
+                                                    </button>
+                                                    {{ unit.name }}
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'sbs:arsiv-birimUpdate' unit.pk %}"
+                                                       class="btn btn-primary">İncele</a>
                                                 </td>
                                             </tr>
                                             <tr class="expandable-body">
@@ -427,8 +433,15 @@
                                                                     <tr data-widget="expandable-table"
                                                                         aria-expanded="true">
                                                                         <td>
-                                                                            <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
+                                                                            <button type="button"
+                                                                                    class="btn btn-warning p-0">
+                                                                                <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
+                                                                            </button>
                                                                             {{ kla.name }}
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="{% url 'sbs:klasor-guncelle' kla.pk %}"
+                                                                               class="btn btn-warning">İncele</a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="expandable-body ">
@@ -440,7 +453,12 @@
                                                                                         {% if dos.klasor_id == kla.pk %}
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    {{ dos.sirano }}</td>
+                                                                                                    {{ dos.sirano }}
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <a href="{% url 'sbs:dosya-guncelle' dos.pk %}"
+                                                                                                       class="btn btn-success">
+                                                                                                        incele</a></td>
 
                                                                                             </tr>
 
