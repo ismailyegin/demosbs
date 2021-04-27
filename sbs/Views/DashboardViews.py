@@ -538,7 +538,6 @@ def activeGroup(request, pk):
     group = Group.objects.get(pk=pk)
     userActive.group = group
     userActive.save()
-
     if group.name == "Admin":
         return redirect('sbs:admin')
     elif group.name == "Antrenor":

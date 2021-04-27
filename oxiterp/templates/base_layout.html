@@ -10,7 +10,7 @@
     {% load static %}
     {% if aktif == "Arsiv" %}
         <link rel="shortcut icon" type="image/png" href="/demosbs/media/kobiltek.ico"/>
-    {%endif %}
+    {% endif %}
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -209,87 +209,81 @@
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link" data-toggle="dropdown">
-                       <img alt="İmage" style="height: 30px; width: 30px;" class="rounded-circle" src="{% static 'dist/img/avatar5.png' %}">
-{#                    <i class="fa fa-align-left"></i>#}
-                    {#                    <img src="/media/{{ person.profileImage }}" class="user-image" alt="KOBİLTEK"#}
-                    {#                         style=" width: 30px;height: 30px;">#}
-                    {#                    <span class="hidden-xs">{{ user.first_name }}  {{ user.last_name }}  <i#}
-                    {#                            class="fa fa-angle-down pull-right"></i></span>#}
+
+            <li class=" nav-item dropdown user user-menu open">
+                <a href="#" class=" nav-link dropdown-toggle" data-toggle="dropdown">
+
+
+                    {% if person.profileImage %}
+
+                        <img alt="İmage" style="height: 30px; width: 30px;" class="rounded-circle"
+                             src="/demosbs/media/{{ person.profileImage }}">
+
+                    {% else %}
+                        <img alt="İmage" style="height: 30px; width: 30px;" class="rounded-circle"
+                             src="{% static 'dist/img/avatar5.png' %}">
+                    {% endif %}
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right center">
-                    <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="dropdown-item dropdown-menu-xl">
+                <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                        {% if person.profileImage %}
+
+                            <img alt="İmage" style="height: 100px; width: 100px;" class="rounded-circle"
+                                 src="/demosbs/media/{{ person.profileImage }}">
+
+                        {% else %}
+                            <img alt="İmage" style="height: 100px; width: 100px;" class="rounded-circle"
+                                 src="{% static 'dist/img/avatar5.png' %}">
+                        {% endif %}
 
 
-                            <img src="/media/{{ person.profileImage }}" class="img-circle" alt="KOBİLTEK">
-                            <br>
-
-                            <p>
-                                {{ user.first_name }}{{ user.last_name }}
-                                <br>
+                        <p>
+                            {{ user.first_name }}   {{ user.last_name }}
+                            {% if aktif == "KlupUye" %}
+                                <small> Kulüp Üyesi </small>
 
 
+                            {% elif aktif == "Hakem" %}
+                                <small> Hakem</small>
+                            {% elif aktif == "Arsiv" %}
+                                <small> Arsiv</small>
+                            {% elif  aktif ==  "Admin" %}
+                                <small> Admin</small>
 
-                                {% if aktif == "KlupUye" %}
-                                    <small> Kulüp Üyesi </small>
+                            {% elif aktif == "Yonetim" %}
+                                <small> Yönetim</small>
+                            {% elif aktif == "Sporcu" %}
+                                <small> Sporcu </small>
+                            {% elif aktif == "Antrenor" %}
+                                <small> Antrenör</small>
+                            {% endif %}
 
-
-                                {% elif aktif == "Hakem" %}
-                                    <small> Hakem</small>
-
-
-
-
-                                {% elif  aktif ==  "Admin" %}
-                                    <small> Admin</small>
-
-
-                                {% elif aktif == "Yonetim" %}
-                                    <small> Yönetim</small>
-
-
-                                {% elif aktif == "Sporcu" %}
-                                    <small> Sporcu </small>
-
-
-
-
-                                {% elif aktif == "Antrenor" %}
-                                    <small> Antrenör</small>
-
-                                    <br>
-
-
-                                {% else %}
-                                    <a><i class="fa fa-circle text-success"></i> {{ aktif }}</a>
-                                {% endif %}
-
-
-
-
-                                <br>
-
-                                <small>Kayıt Tarihi: {{ user.date_joined }}</small>
-
-
-                            </p>
+                        </p>
+                    </li>
+                    <!-- Menu Body -->
+                    <li class="user-body">
+                        <div class="row">
+                            {% for gr in group %}
+                            <div class="col-md text-center">
+                                <a href="{% url 'sbs:aktive-update' gr.pk %}">{{ gr.name }}</a>
+                            </div>
+                            {% endfor %}
                         </div>
-
-                        <!-- Message End -->
-                    </a>
-
-
-                    <div class="dropdown-item dropdown-footer btn-group-lg">
-
-
-                        {% if aktif == "Sporcu" %}
+                        <!-- /.row -->
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <div class="row">
+                              <div class="col-md">
+                                                 {% if aktif == "Sporcu" %}
                             <a href="{% url "sbs:sporcu-profil-guncelle" %}"
                                class="btn btn-default btn-flat">Profil Bilgisi</a>
 
                         {% elif aktif == "Admin" %}
+                            <a href="{% url "sbs:admin-profil-guncelle" %}"
+                               class="btn btn-default btn-flat">Profil Bilgisi</a>
+                                                {% elif aktif == "Arsiv" %}
                             <a href="{% url "sbs:admin-profil-guncelle" %}"
                                class="btn btn-default btn-flat">Profil Bilgisi</a>
 
@@ -316,58 +310,14 @@
                             <a><i class="fa fa-circle text-success"></i> {{ aktif }}</a>
                         {% endif %}
 
-
-                        <a class="pull-right">
-                            <a href="{% url 'accounts:logout' %}" class="btn btn-default btn-flat">Çıkış Yap</a>
-                        </a>
-
-
-                    </div>
-                </div>
+                            </div>
+                            <div class="col-md text-right">
+                                 <a href="{% url 'accounts:logout' %}" class="btn btn-default btn-flat">Çıkış Yap</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </li>
-
-           <li class=" nav-item dropdown user user-menu open">
-            <a href="#" class=" nav-link dropdown-toggle" data-toggle="dropdown">
-               <img alt="İmage" style="height: 30px; width: 30px;" class="rounded-circle" src="{% static 'dist/img/avatar5.png' %}">
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                 <img alt="İmage" style="height: 100px; width: 100px;" class="rounded-circle" src="{% static 'dist/img/avatar5.png' %}">
-
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-md text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-md text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-md text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                  <div class="row">
-                <div class="col-md">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="col-md text-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-                      </div>
-              </li>
-            </ul>
-          </li>
 
 
         </ul>
@@ -426,16 +376,16 @@
                             {% endif %}
                         {% endfor %}
                     {% elif aktif == 'Arsiv' %}
-                          {% for menu in arsivmenus %}
+                        {% for menu in arsivmenus %}
                             {% if menu.is_parent %}
                                 <li class="nav-item menu-is-opening menu-open">
-{#                                    <a href="#" class="nav-link ">#}
-{#                                        <i class="nav-icon fas {{ menu.fa_icon }}"></i>#}
-{#                                        <p>#}
-{#                                            {{ menu.name }}#}
-{#                                            <i class="fas fa-angle-left right"></i>#}
-{#                                        </p>#}
-{#                                    </a>#}
+                                    {#                                    <a href="#" class="nav-link ">#}
+                                    {#                                        <i class="nav-icon fas {{ menu.fa_icon }}"></i>#}
+                                    {#                                        <p>#}
+                                    {#                                            {{ menu.name }}#}
+                                    {#                                            <i class="fas fa-angle-left right"></i>#}
+                                    {#                                        </p>#}
+                                    {#                                    </a>#}
                                     <ul class="nav nav-treeview">
                                         {% for menusub in arsivmenus %}
                                             {% if menusub.parent.id is menu.id %}
