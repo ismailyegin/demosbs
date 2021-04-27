@@ -528,9 +528,6 @@ def City_athlete_cout(request):
 
     else:
         return JsonResponse({'status': 'Fail'})
-#
-#
-
 
 @login_required
 def activeGroup(request, pk):

@@ -306,7 +306,24 @@ def arsiv_klasorUpdate(request, pk):
         if klasor_form.is_valid():
             test = klasor_form.save()
             test.save()
-    return render(request, 'arsiv/KlasorGuncelle.html', {'form': klasor_form, 'dosya': dosya, 'klasor': klasor})
+    ileri = 0
+    geri = 0
+    x = 0
+    for item in Aklasor.objects.filter(birim=klasor.birim):
+        if item.pk == klasor.pk:
+            x = 1
+        else:
+            if x == 0:
+                geri = item.pk
+            if x == 1:
+                ileri = item.pk
+                break
+    return render(request, 'arsiv/KlasorGuncelle.html', {'form': klasor_form,
+                                                         'dosya': dosya,
+                                                         'klasor': klasor,
+                                                         'back': geri,
+                                                         'forward': ileri,
+                                                         })
 
 
 def arsiv_dosyaEkle(request, pk):
@@ -368,9 +385,27 @@ def arsiv_dosyaUpdate(request, pk):
                 )
                 dosyaParametre.parametre = item
                 dosyaParametre.save()
-        dosya.save()
+    dosya.save()
+    ileri = 0
+    geri = 0
+    x = 0
+    for item in Adosya.objects.filter(klasor=dosya.klasor):
+        if item.pk == dosya.pk:
+            x = 1
+        else:
+            if x == 0:
+                geri = item.pk
+            if x == 1:
+                ileri = item.pk
+                break
     return render(request, 'arsiv/DosyaGuncelle.html',
-                  {'form': form, 'dosya': dosya, 'files': files, 'evraklist': evraklist})
+                  {'form': form,
+                   'dosya': dosya,
+                   'files': files,
+                   'evraklist': evraklist,
+                   'back':geri,
+                   'forward':ileri,
+                   })
 
 
 @login_required

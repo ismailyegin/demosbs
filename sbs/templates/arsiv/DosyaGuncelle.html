@@ -108,6 +108,21 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+
+
+                        {% if  back != 0 %}
+                            <li class="breadcrumb-item">
+                            <a href="{% url "sbs:dosya-guncelle" back %}"
+                               type="button" class="btn btn-warning"> Geri</a>
+                        </li>
+                        {% endif %}{% if forward != 0 %}
+                        <li class="breadcrumb-item">
+                            <a href="{% url "sbs:dosya-guncelle" forward%}"
+                               type="button" class="btn btn-warning"> İleri</a>
+                        </li>
+                        {% endif %}
+
+
                         <li class="breadcrumb-item">
                             <a href="{% url "sbs:dosya-ekle" dosya.klasor.pk %}"
                                type="button" class="btn btn-success"><i

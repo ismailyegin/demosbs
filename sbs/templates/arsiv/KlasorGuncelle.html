@@ -103,7 +103,19 @@
                     <h3>Klasör Güncelle </h3>
                 </div>
                 <div class="col-sm-6">
+
                     <ol class="breadcrumb float-sm-right">
+                        {% if  back != 0 %}
+                            <li class="breadcrumb-item">
+                                <a href="{% url "sbs:klasor-guncelle" back %}"
+                                   type="button" class="btn btn-warning"> Geri</a>
+                            </li>
+                        {% endif %}{% if forward != 0 %}
+                        <li class="breadcrumb-item">
+                            <a href="{% url "sbs:klasor-guncelle" forward %}"
+                               type="button" class="btn btn-warning"> İleri</a>
+                        </li>
+                    {% endif %}
                         <li class="breadcrumb-item"><a href="{% url "sbs:klasor-ekle" %}?birim={{ klasor.birim.pk }}"
                                                        type="button" class="btn btn-success"><i
                                 class="fa fa-file"></i>Yeni Klasör Ekle
@@ -147,83 +159,83 @@
 
             </div>
             <div class="row">
-            <section class="col-lg-12 ">
-                <div class="card-body">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header with-border">
-                            <h3 class="card-title">Dosyalar</h3>
-                        </div>
-                    <div class="card-header with-border">
-                            <div class="btn-group">
-{#                                {% if user.groups.all.0.name == 'Yonetim' or user.groups.all.0.name == 'Admin' %}#}
+                <section class="col-lg-12 ">
+                    <div class="card-body">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Dosyalar</h3>
+                            </div>
+                            <div class="card-header with-border">
+                                <div class="btn-group">
+                                    {#                                {% if user.groups.all.0.name == 'Yonetim' or user.groups.all.0.name == 'Admin' %}#}
                                     <a href="{% url "sbs:dosya-ekle" klasor.pk %}"
                                        type="button" class="btn btn-success"><i
                                             class="fa fa-edit"></i> Yeni Dosya Ekle
                                     </a>
-{#                                {% endif %}#}
+                                    {#                                {% endif %}#}
+                                </div>
+
                             </div>
+                            <div class="card-body">
+                                <table id="dosyaTable" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Sırano</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if dosya %}
+                                        {% for item in dosya %}
+                                            <tr>
+                                                <td>{{ forloop.counter }} </td>
+                                                <td>{{ item.sirano }} </td>
 
+                                                <td>
+                                                    <a href="{% url "sbs:dosya-guncelle"  item.pk %}"
+                                                       type="button" class="btn btn-warning"><i
+                                                            class="fa fa-edit"></i> İncele
+                                                    </a>
+
+                                                    <button onclick="dosyadelete({{ item.pk }})"
+                                                            type="button" class="btn btn-danger"><i
+                                                            class="fa fa-trash"></i> Sil
+                                                    </button>
+                                                </td>
+
+                                                {#                                            <td>#}
+                                                {#                                                <div class="btn-group">#}
+                                                {##}
+                                                {#                                                    <a class="btn btn-success"#}
+                                                {#                                                       data-toggle="modal" onclick=sendInform({{ user.pk }})><i#}
+                                                {#                                                            class="fa  fa-arrow-circle-right"></i>Şifre Gönder</a>#}
+                                                {##}
+                                                {#                                                    <a class="btn btn-danger"#}
+                                                {#                                                       data-toggle="modal" onclick=activeUser({{ user.pk }})><i#}
+                                                {#                                                            class="fa fa-lock"></i>Aktif/Pasifleştir</a>#}
+                                                {#                                                </div>#}
+                                                {#                                            </td>#}
+
+                                            </tr>
+
+                                        {% endfor %}
+                                    {% endif %}
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <table id="dosyaTable" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Sırano</th>
-                                    <th>İşlemler</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% if dosya %}
-                                    {% for item in dosya %}
-                                        <tr>
-                                            <td>{{ forloop.counter }} </td>
-                                            <td>{{ item.sirano}} </td>
-
-                                        <td>
-                                             <a href="{% url "sbs:dosya-guncelle"  item.pk%}"
-                                       type="button" class="btn btn-warning"><i
-                                            class="fa fa-edit"></i> İncele
-                                    </a>
-
-                                            <button onclick="dosyadelete({{ item.pk }})"
-                                                    type="button" class="btn btn-danger"><i
-                                                    class="fa fa-trash"></i> Sil
-                                            </button>
-                                        </td>
-
-                                            {#                                            <td>#}
-                                            {#                                                <div class="btn-group">#}
-                                            {##}
-                                            {#                                                    <a class="btn btn-success"#}
-                                            {#                                                       data-toggle="modal" onclick=sendInform({{ user.pk }})><i#}
-                                            {#                                                            class="fa  fa-arrow-circle-right"></i>Şifre Gönder</a>#}
-                                            {##}
-                                            {#                                                    <a class="btn btn-danger"#}
-                                            {#                                                       data-toggle="modal" onclick=activeUser({{ user.pk }})><i#}
-                                            {#                                                            class="fa fa-lock"></i>Aktif/Pasifleştir</a>#}
-                                            {#                                                </div>#}
-                                            {#                                            </td>#}
-
-                                        </tr>
-
-                                    {% endfor %}
-                                {% endif %}
+                        <!-- /.card -->
 
 
-                                </tbody>
-                            </table>
-
-                        </div>
                     </div>
-                    <!-- /.card -->
+                </section>
 
 
-                </div>
-            </section>
-
-
-        </div>
+            </div>
 
         </form>
     </section>
@@ -242,7 +254,7 @@
 
         })
 
-         function dosyadelete(id) {
+        function dosyadelete(id) {
 
 
             $("#modal-danger").on("shown.bs.modal", function (e) {
