@@ -706,22 +706,24 @@ def birimSearch(request):
             units = Abirim.objects.all()
             klasor = Aklasor.objects.all()
 
-    if len(dosyadizi) == 0:
-        for item in dosya.distinct():
-            if AdosyaParametre.objects.filter(dosya=item):
-                test = AdosyaParametre.objects.filter(dosya=item)[0]
-                # print(test.parametre)
-                beka = {
-                    'pk': item.pk,
-                    'sirano': item.sirano,
-                    'klasor_id': item.klasor.pk
-                }
-                dosyadizi.append(beka)
+    # if len(dosyadizi) == 0:
+    #     for item in dosya.distinct():
+    #         if AdosyaParametre.objects.filter(dosya=item):
+    #             test = AdosyaParametre.objects.filter(dosya=item)[0]
+    #             # print(test.parametre)
+    #             beka = {
+    #                 'pk': item.pk,
+    #                 'sirano': item.sirano,
+    #                 'klasor_id': item.klasor.pk
+    #             }
+    #             dosyadizi.append(beka)
+    #             print(dosyadizi)
     return render(request, "arsiv/Arama.html",
                   {
                       'units': units.distinct(),
                       'klasor': klasor.distinct(),
-                      'files': dosyadizi,
+                      # 'files': dosyadizi,
+                      'dosya':dosya,
                       'klasor_form': klasor_form,
                       'backdata': backdata,
                       'backsearch': backsearch,
