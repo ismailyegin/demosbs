@@ -12,8 +12,8 @@ class Aklasor(models.Model):
     sirano = models.IntegerField(null=False, blank=False,verbose_name='Sıra Numarası')
     location = models.ForeignKey(CategoryItem, on_delete=models.SET_NULL,null=True, blank=True,verbose_name='Konumu')
     birim = models.ForeignKey(Abirim, on_delete=models.CASCADE,null=True, blank=True,verbose_name='Birim')
-    startyear = models.IntegerField(null=True, blank=True, verbose_name='startyear')
-    finishyear=models.IntegerField(null=True, blank=True, verbose_name='finishyear')
+    startyear = models.IntegerField(null=True, blank=True, verbose_name=' Başlangıç Yılı')
+    finishyear=models.IntegerField(null=True, blank=True, verbose_name='Bitiş Yılı')
     kobilid=models.IntegerField(null=True,blank=True)
 
 

@@ -645,6 +645,8 @@ def birimSearch(request):
         sirano = request.POST.get('klasorsirano')
         location = request.POST.get('klasorlocation')
         birim = request.POST.get('klasorbirim')
+        start=request.POST.get('klasorstartyear')
+        finish=request.POST.get('klasorfinishyear')
 
         # genel arama alani
         if request.POST.get('search'):
@@ -718,7 +720,7 @@ def birimSearch(request):
 
         # klasör arama alani
 
-        elif (name or sirano or location or birim):
+        elif (name or sirano or location or birim or start or finish):
 
             backdata = name + "/" + sirano + "/" + location + "/" + birim
             backsearch = "searchKlasor"
@@ -732,6 +734,10 @@ def birimSearch(request):
                 query &= Q(location__pk=int(location))
             if birim:
                 query &= Q(birim__pk=int(birim))
+            if start:
+                query &= Q(startyear=int(start))
+            if finish:
+                query &= Q(finishyear=int(finish))
             klasor |= Aklasor.objects.filter(query)
 
             for item in klasor:

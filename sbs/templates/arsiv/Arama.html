@@ -335,6 +335,17 @@
 
                                                         </select></td>
                                                     </tr>
+                                                    <tr>
+                                                        <th><label for="id_startyear"> Başlangıç Yılı:</label></th>
+                                                        <td><input type="number" name="klasorstartyear"
+                                                                   class="form-control dateyear" id="id_startyear"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th><label for="id_finishyear">Bitiş Yılı:</label></th>
+                                                        <td><input type="number" name="klasorfinishyear"
+                                                                   class="form-control dateyear" id="id_finishyear">
+                                                        </td>
+                                                    </tr>
 
                                                     <div class="card-footer">
                                                         <button type="submit" class="btn btn-primary">Ara</button>
@@ -441,7 +452,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <a href="{% url 'sbs:klasor-guncelle' kla.pk %}"
-                                                                               class="btn btn-warning">İncele</a>
+                                                                               class="btn btn-primary">İncele</a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="expandable-body ">
@@ -457,7 +468,7 @@
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     <a href="{% url 'sbs:dosya-guncelle' dos.pk %}"
-                                                                                                       class="btn btn-success">
+                                                                                                       class="btn btn-primary">
                                                                                                         incele</a></td>
 
                                                                                             </tr>
