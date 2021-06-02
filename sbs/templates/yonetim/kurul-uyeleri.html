@@ -138,26 +138,26 @@
                         <form method="post" role="form">
                             <div class="card-body">
                                 {% csrf_token %}
-<div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label> {{ user_form.first_name.label }}</label>
-                                        {{ user_form.first_name }}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label> {{ user_form.first_name.label }}</label>
+                                            {{ user_form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label> {{ user_form.last_name.label }}</label>
+                                            {{ user_form.last_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label> {{ user_form.email.label }}</label>
+                                            {{ user_form.email }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label> {{ user_form.last_name.label }}</label>
-                                        {{ user_form.last_name }}
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label> {{ user_form.email.label }}</label>
-                                        {{ user_form.email }}
-                                    </div>
-                                </div>
-</div>
 
                             </div>
                             <!-- /.card-body -->
@@ -291,7 +291,7 @@
                         extend: 'colvis',
                         text: "Ekle Çıkar",
                         titleAttr: 'Ekle Çıkar',
-                         title: 'SBS',
+                        title: 'SBS',
 
 
                     },
@@ -305,7 +305,7 @@
                         extend: 'pdfHtml5',
                         download: 'open',
                         text: "Pdf",
-                         title: 'SBS',
+                        title: 'SBS',
                         titleAttr: 'Pdf Kaydet'
                     },
 
@@ -313,7 +313,7 @@
                         extend: 'excelHtml5',
                         text: "Excel",
                         titleAttr: 'Excel Kaydet',
-                         title: 'SBS',
+                        title: 'SBS',
                     },
                     {
                         text: 'Json',
@@ -361,7 +361,7 @@
                         success: function (result) {
 
                             html = 'Yönetim Kurulu Üyesi Başarıyla Silindi';
-                        debugger;
+                            debugger;
                             $(".successModal").html(html);
                             $('#modal-success').on("shown.bs.modal", function (e) {
                                 $(".btn-ok").click(function () {

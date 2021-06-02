@@ -27,7 +27,7 @@ from sbs.models.Aevrak import Aevrak
 from sbs.models.Aklasor import Aklasor
 from sbs.models.CategoryItem import CategoryItem
 from sbs.services import general_methods
-
+from sbs.models.Employe import Employe
 
 @login_required
 def return_arsiv(request):
@@ -37,8 +37,6 @@ def return_arsiv(request):
         return redirect('accounts:login')
 
     return render(request, 'arsiv/arsiv.html')
-
-
 @login_required
 def arsiv_location_add(request):
     perm = general_methods.control_access(request)
@@ -55,8 +53,6 @@ def arsiv_location_add(request):
     categoryitem = CategoryItem.objects.filter(forWhichClazz='location')
     return render(request, 'arsiv/location.html',
                   {'category_item_form': category_item_form, 'categoryitem': categoryitem})
-
-
 @login_required
 def arsiv_location_update(request, pk):
     perm = general_methods.control_access(request)
@@ -185,19 +181,27 @@ def arsiv_birimListesi(request):
     birimler = Abirim.objects.none()
     if request.method == 'POST':
         name = request.POST.get('name')
+        active = general_methods.controlGroup(request)
         if not (name):
-            birimler = Abirim.objects.filter()
+
+            if active != 'Personel':
+                birimler = Abirim.objects.all()
+            else:
+                birimler = Abirim.objects.filter(employe=Employe.objects.get(user=request.user))
+
 
         else:
             query = Q()
             if name:
                 query &= Q(name__icontains=name)
-            birimler = Abirim.objects.filter(query)
+
+            if active != 'Personel':
+                birimler = Abirim.objects.filter(query)
+            else:
+                birimler = Abirim.objects.filter(employe=Employe.objects.get(user=request.user)).filter(query)
 
     return render(request, 'arsiv/BirimList.html', {'birimler': birimler,
                                                     'birim_form': birim_form})
-
-
 @login_required
 def parametredelete(request, pk):
     perm = general_methods.control_access(request)
@@ -258,8 +262,14 @@ def arsiv_klasorler(request):
         sirano = request.POST.get('sirano')
         location = request.POST.get('location')
         birim = request.POST.get('birim')
-        if not (name or sirano or location or birim):
-            klasor = Aklasor.objects.all()
+        start = request.POST.get('startyear')
+        finish = request.POST.get('finishyear')
+        active = general_methods.controlGroup(request)
+        if not (name or sirano or location or birim or finish or start):
+            if active != 'Personel':
+                klasor = Aklasor.objects.all()
+            else:
+                klasor =Aklasor.objects.filter(birim__employe=Employe.objects.get(user=request.user))
         else:
             query = Q()
             if name:
@@ -270,7 +280,16 @@ def arsiv_klasorler(request):
                 query &= Q(location__pk=int(location))
             if birim:
                 query &= Q(birim__pk=int(birim))
-            klasor = Aklasor.objects.filter(query)
+            if start:
+                query &= Q(startyear__gte=start)
+            if finish:
+                query &= Q(finishyear__lte=finish)
+
+            if active != 'Personel':
+                klasor = Aklasor.objects.filter(query)
+            else:
+                klasor = Aklasor.objects.filter(birim__employe=Employe.objects.get(user=request.user)).filter(query)
+
 
     #
     # for item in klasor:
@@ -324,7 +343,6 @@ def arsiv_klasorUpdate(request, pk):
                                                          'back': geri,
                                                          'forward': ileri,
                                                          })
-
 
 def arsiv_dosyaEkle(request, pk):
     perm = general_methods.control_access(request)
@@ -403,18 +421,15 @@ def arsiv_dosyaUpdate(request, pk):
                    'dosya': dosya,
                    'files': files,
                    'evraklist': evraklist,
-                   'back':geri,
-                   'forward':ileri,
+                   'back': geri,
+                   'forward': ileri,
                    })
-
-
 @login_required
 def arsiv_evrakEkle(request, pk):
     perm = general_methods.control_access(request)
     if not perm:
         logout(request)
         return redirect('accounts:login')
-
     form = AevrakForm()
     if request.method == 'POST':
         form = AevrakForm(request.POST, request.FILES)
@@ -431,8 +446,6 @@ def arsiv_evrakEkle(request, pk):
     return render(request, 'arsiv/EvrakEkle.html',
                   {'form': form, }
                   )
-
-
 @login_required
 def arsiv_evrakDelete(request, pk):
     perm = general_methods.control_access(request)
@@ -443,8 +456,6 @@ def arsiv_evrakDelete(request, pk):
     dosya = Adosya.objects.filter(evrak=evrak)[0]
     evrak.delete()
     return redirect('sbs:dosya-guncelle', dosya.pk)
-
-
 @login_required
 def arsiv_anasayfa(request):
     perm = general_methods.control_access(request)
@@ -610,8 +621,14 @@ def arsiv_dosyalar(request):
         location = request.POST.get('location')
         birim = request.POST.get('birim')
         klasor = request.POST.get('klasor')
+        active = general_methods.controlGroup(request)
         if not (klasor or sirano or location or birim):
-            dosya = Adosya.objects.all()
+
+
+            if active != 'Personel':
+                dosya = Adosya.objects.all()
+            else:
+                dosya=Adosya.objects.filter(klasor__birim__employe=Employe.objects.get(user=request.user))
         else:
             query = Q()
             if klasor:
@@ -622,7 +639,10 @@ def arsiv_dosyalar(request):
                 query &= Q(klasor__location__pk=location)
             if birim:
                 query &= Q(klasor__birim__pk=birim)
-            dosya = Adosya.objects.filter(query)
+            if active != 'Personel':
+                dosya = Adosya.objects.filter(query)
+            else:
+                dosya=Adosya.objects.filter(klasor__birim__employe=Employe.objects.get(user=request.user)).filter(query)
 
     return render(request, 'arsiv/DosyaListesi.html', {'dosya': dosya,
                                                        'klasor_form': klasor_form,
@@ -630,23 +650,31 @@ def arsiv_dosyalar(request):
                                                        })
 
 
+@login_required
 def birimSearch(request):
+    active = general_methods.controlGroup(request)
     dosya = Adosya.objects.none()
     units = Abirim.objects.none()
     klasor = Aklasor.objects.none()
     klasor_form = AklasorSearchForm()
 
     dosyadizi = []
+    dosyaX=[]
     backdata = None
     backsearch = None
+    employe=Employe.objects.none()
+    if active == 'Personel':
+        employe = Employe.objects.get(user=request.user)
 
     if request.method == 'POST':
         name = request.POST.get('klasorname')
         sirano = request.POST.get('klasorsirano')
         location = request.POST.get('klasorlocation')
         birim = request.POST.get('klasorbirim')
-        start=request.POST.get('klasorstartyear')
-        finish=request.POST.get('klasorfinishyear')
+        start = request.POST.get('klasorstartyear')
+        finish = request.POST.get('klasorfinishyear')
+
+        dosyaparametre=AdosyaParametre.objects.none()
 
         # genel arama alani
         if request.POST.get('search'):
@@ -654,20 +682,38 @@ def birimSearch(request):
             backdata = search
             backsearch = "genelArama"
             # print('genel arama ')
-            units |= Abirim.objects.filter(name__icontains=search)
-            klasor |= Aklasor.objects.filter(name__icontains=search)
-            try:
-                dosya |= Adosya.objects.filter(sirano=search)
-            except:
-                print('Sayisal degil')
-            if klasor:
-                for item in klasor:
-                    units |= Abirim.objects.filter(pk=item.birim.pk)
-            if dosya:
-                for item in dosya:
-                    klasor |= Aklasor.objects.filter(pk=item.klasor.pk)
-                    units |= Abirim.objects.filter(pk=item.klasor.birim.pk)
-            dosyaparametre = AdosyaParametre.objects.filter(value__contains=search)
+            if active != 'Personel':
+                units |= Abirim.objects.filter(name__icontains=search)
+                klasor |= Aklasor.objects.filter(name__icontains=search)
+                try:
+                    dosya |= Adosya.objects.filter(sirano=search)
+                except:
+                    print('Sayisal degil')
+                if klasor:
+                    for item in klasor:
+                        units |= Abirim.objects.filter(pk=item.birim.pk)
+                if dosya:
+                    for item in dosya:
+                        klasor |= Aklasor.objects.filter(pk=item.klasor.pk)
+                        units |= Abirim.objects.filter(pk=item.klasor.birim.pk)
+                dosyaparametre = AdosyaParametre.objects.filter(value__contains=search)
+            else:
+                employe=Employe.objects.get(user=request.user)
+                units |= Abirim.objects.filter(employe=employe).filter(name__icontains=search)
+                klasor |= Aklasor.objects.filter(birim__employe=employe).filter(name__icontains=search)
+                try:
+                    dosya |= Adosya.objects.filter(klasor__birim__employe=employe).filter(sirano=search)
+                except:
+                    print('Sayisal degil')
+                if klasor:
+                    for item in klasor:
+                        units |= Abirim.objects.filter(employe=employe).filter(pk=item.birim.pk)
+                if dosya:
+                    for item in dosya:
+                        klasor |= Aklasor.objects.filter(birim__employe=employe).filter(pk=item.klasor.pk)
+                        units |= Abirim.objects.filter(employe=employe).filter(pk=item.klasor.birim.pk)
+                dosyaparametre = AdosyaParametre.objects.filter(value__contains=search)
+
             if dosyaparametre:
                 for item in dosyaparametre:
                     dosya |= Adosya.objects.filter(pk=int(item.dosya.pk))
@@ -677,9 +723,26 @@ def birimSearch(request):
                         'pk': item.dosya.pk,
                         'sirano': item.dosya.sirano,
                         'parametre': search + '/' + item.parametre.title,
-                        'klasor_id': item.dosya.klasor.pk
-                    }
+                        'klasor_id': item.dosya.klasor.pk,
+                        'parametre':item.parametre.title,
+                        'birim':item.parametre.birim.pk
+                          }
                     dosyadizi.append(beka)
+
+            if dosya:
+                test=[]
+                for item in dosya:
+                    test.append(item.pk)
+
+                for item in AdosyaParametre.objects.filter(dosya__in=test):
+                    beka = {
+                        'pk': item.dosya.pk,
+                        'sirano': item.dosya.sirano,
+                        'birim':item.parametre.birim.pk,
+                        'value':item.value,
+                        'title':item.parametre.title,
+                          }
+                    dosyaX.append(beka)
         # dosya arama alani
         # if request.POST.get('searchdosya'):
         #     dosya |=Adosya.objects.filter(sirano=request.POST.get('searchdosya'))
@@ -689,8 +752,13 @@ def birimSearch(request):
         # birim arama alani
         elif request.POST.get('searchbirim'):
             # print('birim arama ')
+            units=Abirim.objects.none()
 
-            units = Abirim.objects.filter(pk=request.POST.get('searchbirim'))
+            if active != 'Personel':
+                units = Abirim.objects.filter(pk=request.POST.get('searchbirim'))
+            else:
+                units = Abirim.objects.filter(employe=Employe.objects.filter(user__last_name__icontains=request.user)).filter(pk=request.POST.get('searchbirim'))
+
             backdata = Abirim.objects.get(pk=request.POST.get('searchbirim')).pk
             backsearch = "birimArama"
             birimparametre = AbirimParametre.objects.filter(birim__id=int(request.POST.get('searchbirim')))
@@ -715,8 +783,13 @@ def birimSearch(request):
                             dosyadizi.append(beka)
 
             if not (klasor):
-                klasor = Aklasor.objects.filter(birim=Abirim.objects.get(pk=request.POST.get('searchbirim')))
-                dosya = Adosya.objects.filter(klasor__birim__pk=request.POST.get('searchbirim'))
+                if active != 'Personel':
+                    klasor = Aklasor.objects.filter(birim=Abirim.objects.get(pk=request.POST.get('searchbirim')))
+                    dosya = Adosya.objects.filter(klasor__birim__pk=request.POST.get('searchbirim'))
+                else:
+                    klasor = Aklasor.objects.filter(birim__employe=Employe.objects.filter(user=request.user)).filter(birim=Abirim.objects.get(pk=request.POST.get('searchbirim')))
+                    dosya = Adosya.objects.filter(klasor__birim__employe=Employe.objects.get(user=request.user)).filter(klasor__birim__pk=request.POST.get('searchbirim'))
+
 
         # klasör arama alani
 
@@ -738,14 +811,28 @@ def birimSearch(request):
                 query &= Q(startyear=int(start))
             if finish:
                 query &= Q(finishyear=int(finish))
-            klasor |= Aklasor.objects.filter(query)
+
+            if active != 'Personel':
+                klasor |= Aklasor.objects.filter(query)
+            else:
+                klasor |= Aklasor.objects.filter(birim__employe=Employe.objects.get(user=request.user)).filter(query)
+
 
             for item in klasor:
                 units |= Abirim.objects.filter(pk=item.birim.pk)
+                #seçim olmazsa hepsini getir
         else:
-            dosya = Adosya.objects.all()
-            units = Abirim.objects.all()
-            klasor = Aklasor.objects.all()
+            if active != 'Personel':
+                units = Abirim.objects.all()
+                klasor = Aklasor.objects.all()
+                dosya = Adosya.objects.all()
+            else:
+
+                employe=Employe.objects.get(user=request.user)
+                units |= Abirim.objects.filter(employe=employe)
+                klasor |= Aklasor.objects.filter(birim__employe=employe)
+                dosya = Adosya.objects.filter(klasor__birim__employe=employe)
+
 
     # if len(dosyadizi) == 0:
     #     for item in dosya.distinct():
@@ -764,14 +851,16 @@ def birimSearch(request):
                       'units': units.distinct(),
                       'klasor': klasor.distinct(),
                       # 'files': dosyadizi,
-                      'dosya':dosya,
+                      'dosya': dosya,
                       'klasor_form': klasor_form,
                       'backdata': backdata,
                       'backsearch': backsearch,
+                      'employe':employe,
+                      'dosyadizi':dosyadizi,
+                      'dosyaX':dosyaX
+
 
                   })
-
-
 @login_required
 def zipfile(request, pk):
     perm = general_methods.control_access(request)
@@ -904,8 +993,17 @@ def arsiv_dosyaEkle_full(request):
     if not perm:
         logout(request)
         return redirect('accounts:login')
+    active = general_methods.controlGroup(request)
+    employe=Employe.objects.none()
 
-    units = Abirim.objects.all()
+
+    if active != 'Personel':
+        units = Abirim.objects.all()
+
+    else:
+        units=Abirim.objects.filter(employe=Employe.objects.get(user=request.user).pk)
+        employe = Employe.objects.get(user=request.user)
+
     unit_form = AbirimForm()
     klasor_form = AklasorForm()
 
@@ -936,8 +1034,6 @@ def arsiv_dosyaEkle_full(request):
                     dosyaParametre.save()
             dosya.save()
             return redirect('sbs:dosya-guncelle', dosya.pk)
-
-
         elif request.POST.get("dosya_id"):
             if Adosya.objects.filter(pk=int(request.POST.get("dosya_id"))):
                 dosya = Adosya.objects.get(pk=int(request.POST.get("dosya_id")))
@@ -953,7 +1049,7 @@ def arsiv_dosyaEkle_full(request):
         'units': units,
         'unit_form': unit_form,
         'klasor_form': klasor_form,
-
+        'employe':employe
     })
 
 
@@ -974,7 +1070,6 @@ def ajax_klasor(request):
                     'data': beka,
                     'msg': 'Valid is  request'
                 })
-
     except:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
@@ -993,11 +1088,10 @@ def ajax_klasor_update(request):
                             'birim': klasor.birim.pk,
                             'name': klasor.name,
                             'sirano': klasor.sirano,
-                            'finish':klasor.finishyear,
-                             'start':klasor.startyear,
+                            'finish': klasor.finishyear,
+                            'start': klasor.startyear,
                             'status': 'Success',
                             'msg': 'Valid is  request'
-
                         })
             else:
                 return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
@@ -1023,10 +1117,10 @@ def ajax_klasor_update_add(request):
                         klasor.location_id = request.POST.get('location')
                     if request.POST.get('birim'):
                         klasor.birim_id = request.POST.get('birim')
-                    if  request.POST.get('finish'):
-                        klasor.finishyear=request.POST.get('finish')
+                    if request.POST.get('finish'):
+                        klasor.finishyear = request.POST.get('finish')
                     if request.POST.get('start'):
-                        klasor.startyear=request.POST.get('start')
+                        klasor.startyear = request.POST.get('start')
 
                     klasor.save()
 
@@ -1036,8 +1130,8 @@ def ajax_klasor_update_add(request):
                             'name': klasor.name,
                             'birimpk': klasor.birim.pk,
                             'birimname': klasor.birim.name,
-                             'finish':klasor.finishyear,
-                             'start':klasor.startyear,
+                            'finish': klasor.finishyear,
+                            'start': klasor.startyear,
                             'status': 'Success',
                             'msg': 'İşlem Başari ile gerçekleşti'
 
@@ -1080,7 +1174,6 @@ def ajax_dosyaform(request):
         form = str(AdosyaForm(klasor.pk))
         return JsonResponse(
             {
-
                 'data': form,
                 'msg': 'Valid is  request'
             })
@@ -1106,8 +1199,6 @@ def ajax_dosyaform_update(request):
                 })
         else:
             return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
-
-
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
@@ -1170,14 +1261,6 @@ def ajax_birimUpdateParametreAdd(request):
                 'status': 'Success',
                 'msg': 'Valid is  request'
             })
-
-
-
-
-
-
-
-
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
 
@@ -1226,3 +1309,8 @@ def ajax_klasorAdd(request):
             })
     else:
         return JsonResponse({'status': 'Fail', 'msg': 'Not a valid request'})
+
+
+
+
+

@@ -272,11 +272,16 @@
                                                                 style="width: 100%; " tabindex="-1"
                                                                 aria-hidden="true">
 
-                                                            {% for item in klasor_form.birim %}
+                                                            {% if aktif == 'Personel' %}
 
-                                                                {{ item }}
+                                                                <option value="" selected>---------</option>
+                                                                <option value="{{ employe.birim.pk }}">{{ employe.birim.name }}</option>
+                                                            {% else %}
+                                                                {% for item in klasor_form.birim %}
+                                                                    {{ item }}
 
-                                                            {% endfor %}
+                                                                {% endfor %}
+                                                            {% endif %}
 
 
                                                         </select></div>
@@ -324,13 +329,16 @@
                                                         <td><select name="klasorbirim" class="form-control"
                                                                     id="klasorbirim">
 
+                                                            {% if aktif == 'Personel' %}
 
-                                                            {% for item in klasor_form.birim %}
+                                                                <option value="" selected>---------</option>
+                                                                <option value="{{ employe.birim.pk }}">{{ employe.birim.name }}</option>
+                                                            {% else %}
+                                                                {% for item in klasor_form.birim %}
+                                                                    {{ item }}
 
-
-                                                                {{ item }}
-
-                                                            {% endfor %}
+                                                                {% endfor %}
+                                                            {% endif %}
 
 
                                                         </select></td>
@@ -423,15 +431,18 @@
 
                                             <tr data-widget="expandable-table" aria-expanded="true">
                                                 <td>
-                                                    <button type="button" class="btn btn-primary p-0">
-                                                        <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                                    </button>
+
+                                                    <div class="btn-group">
+                                                        <a type="button"
+                                                           href="{% url 'sbs:arsiv-birimUpdate' unit.pk %}"
+                                                           class="btn btn-default"><i
+                                                                class="fa fa-align-left"></i></a>
+
+
+                                                    </div>
                                                     {{ unit.name }}
                                                 </td>
-                                                <td>
-                                                    <a href="{% url 'sbs:arsiv-birimUpdate' unit.pk %}"
-                                                       class="btn btn-primary">İncele</a>
-                                                </td>
+
                                             </tr>
                                             <tr class="expandable-body">
                                                 <td>
@@ -444,39 +455,66 @@
                                                                     <tr data-widget="expandable-table"
                                                                         aria-expanded="true">
                                                                         <td>
-                                                                            <button type="button"
-                                                                                    class="btn btn-warning p-0">
-                                                                                <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                                                            </button>
+                                                                            <div class="btn-group">
+                                                                                <a type="button"
+                                                                                   href="{% url 'sbs:klasor-guncelle' kla.pk %}"
+                                                                                   class="btn btn-default"><i
+                                                                                        class="fa fa-align-right"></i></a>
+
+
+                                                                            </div>
+
                                                                             {{ kla.name }}
-                                                                        </td>
-                                                                        <td>
-                                                                            <a href="{% url 'sbs:klasor-guncelle' kla.pk %}"
-                                                                               class="btn btn-primary">İncele</a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="expandable-body ">
                                                                         <td>
                                                                             <div class="p-0">
                                                                                 <table class="table table-hover">
-                                                                                    <tbody>
-                                                                                    {% for dos in dosya %}
-                                                                                        {% if dos.klasor_id == kla.pk %}
-                                                                                            <tr>
-                                                                                                <td>
-                                                                                                    {{ dos.sirano }}
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    <a href="{% url 'sbs:dosya-guncelle' dos.pk %}"
-                                                                                                       class="btn btn-primary">
-                                                                                                        incele</a></td>
 
-                                                                                            </tr>
 
-                                                                                        {% endif %}
-                                                                                    {% endfor %}
+                                                                                    {% if backsearch == 'genelArama' %}
 
-                                                                                    </tbody>
+                                                                                        {% for dos in dosyadizi %}
+                                                                                            {% if dos.klasor_id == kla.pk %}
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                       <b> {{ dos.sirano }}({{ dos.parametre }})</b>
+                                                                                                        <span id="dosya-{{ dos.pk }}"></span>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <a href="{% url 'sbs:dosya-guncelle' dos.pk %}"
+                                                                                                           class="btn btn-primary">
+                                                                                                            incele</a>
+                                                                                                    </td>
+
+                                                                                                </tr>
+
+                                                                                            {% endif %}
+                                                                                        {% endfor %}
+
+
+
+                                                                                    {% else %}
+                                                                                        {% for dos in dosya %}
+                                                                                            {% if dos.klasor_id == kla.pk %}
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        {{ dos.sirano }}
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <a href="{% url 'sbs:dosya-guncelle' dos.pk %}"
+                                                                                                           class="btn btn-primary">
+                                                                                                            incele</a>
+                                                                                                    </td>
+
+                                                                                                </tr>
+
+                                                                                            {% endif %}
+                                                                                        {% endfor %}
+                                                                                    {% endif %}
+
+
                                                                                 </table>
                                                                             </div>
                                                                         </td>
@@ -495,7 +533,6 @@
 
                                         {% endfor %}
 
-                                        </tbody>
                                     </table>
                                 </div>
 
@@ -512,6 +549,11 @@
 
     <script>
         $(function () {
+
+            {% for item in dosyaX %}
+
+                $("#dosya-{{ item.pk }}").text($("#dosya-{{ item.pk }}").text() + "({{item.title }} : "+ "{{ item.value }})");
+            {% endfor %}
 
             {% if backsearch %}
 
